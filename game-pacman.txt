@@ -1,0 +1,10 @@
+solidblock=B
+rpoint=*,1,12
+wall=#
+up=w
+down=s
+left=a
+right=d
+character=O
+opp=G,O
+Exit=q
