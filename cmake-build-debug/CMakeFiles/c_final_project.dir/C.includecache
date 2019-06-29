@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/alisa/Desktop/c final project/read_file.c
+read_file.h
+C:/Users/alisa/Desktop/c final project/read_file.h
+stdio.h
+-
+stdlib.h
+-
+
+C:/Users/alisa/Desktop/c final project/read_file.h
+

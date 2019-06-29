@@ -10,9 +10,6 @@ char array[1000][1000];
 
 void read_file () {
     FILE *map;
-    printf("please enter map name ... \n");
-    char map_name[40];
-    scanf("%s",&map_name);
     map = fopen("map-pacman.txt", "r");
     char c;
     int i = 0;
