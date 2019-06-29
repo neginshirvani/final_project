@@ -11,6 +11,9 @@ char array[1000][1000];
 
 extern struct game_conf_struct game_conf;
 
+int x1_pos = 0;
+int y1_pos = 0;
+
 void read_file () {
     FILE *map;
     map = fopen("map-pacman.txt", "r");
@@ -19,6 +22,16 @@ void read_file () {
     int j = 0;
     while ((c = fgetc(map)) != EOF) {
         array[i][j] = c;
+        /* position of the character */
+        if (c == game_conf.character) {
+            x1_pos = j;
+            y1_pos = i;
+        }
+        /* number of deathblocks in the map */
+        if(c == game_conf.daethblock) {
+            game_conf.raindb += 1;
+        }
+
         ++j;
         if (c == '\n') {
             ++i;

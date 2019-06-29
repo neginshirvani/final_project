@@ -25,3 +25,8 @@ struct game_conf_struct {
     int rpoint_num,rpoint_score; // rpoint info
     int time; // time of game
 };
+
+struct game_state_struct{
+    int x;
+    int y;
+};
