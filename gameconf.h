@@ -27,6 +27,8 @@ struct game_conf_struct {
 };
 
 struct game_state_struct{
-    int x;
-    int y;
+    int x_pos;
+    int y_pos;
+    int x_change;
+    int y_change;
 };
