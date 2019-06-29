@@ -1,3 +1,0 @@
-C:/Users/alisa/Desktop/c final project/cmake-build-debug/CMakeFiles/c_final_project.dir
-C:/Users/alisa/Desktop/c final project/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/alisa/Desktop/c final project/cmake-build-debug/CMakeFiles/rebuild_cache.dir
