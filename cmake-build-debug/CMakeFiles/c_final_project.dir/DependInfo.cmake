@@ -4,9 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "C:/Users/IDEA/Desktop/c_final_project/Gameread.c" "C:/Users/IDEA/Desktop/c_final_project/cmake-build-debug/CMakeFiles/c_final_project.dir/Gameread.c.obj"
-  "C:/Users/IDEA/Desktop/c_final_project/main.c" "C:/Users/IDEA/Desktop/c_final_project/cmake-build-debug/CMakeFiles/c_final_project.dir/main.c.obj"
-  "C:/Users/IDEA/Desktop/c_final_project/read_file.c" "C:/Users/IDEA/Desktop/c_final_project/cmake-build-debug/CMakeFiles/c_final_project.dir/read_file.c.obj"
+  "C:/Users/alisa/Desktop/c final project/Gameread.c" "C:/Users/alisa/Desktop/c final project/cmake-build-debug/CMakeFiles/c_final_project.dir/Gameread.c.obj"
+  "C:/Users/alisa/Desktop/c final project/gameconf.c" "C:/Users/alisa/Desktop/c final project/cmake-build-debug/CMakeFiles/c_final_project.dir/gameconf.c.obj"
+  "C:/Users/alisa/Desktop/c final project/main.c" "C:/Users/alisa/Desktop/c final project/cmake-build-debug/CMakeFiles/c_final_project.dir/main.c.obj"
+  "C:/Users/alisa/Desktop/c final project/read_file.c" "C:/Users/alisa/Desktop/c final project/cmake-build-debug/CMakeFiles/c_final_project.dir/read_file.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

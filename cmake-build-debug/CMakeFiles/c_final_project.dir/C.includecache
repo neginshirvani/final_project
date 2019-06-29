@@ -6,31 +6,21 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/IDEA/Desktop/c_final_project/Gameread.c
+C:/Users/alisa/Desktop/c final project/Gameread.h
+
+C:/Users/alisa/Desktop/c final project/gameconf.h
+
+C:/Users/alisa/Desktop/c final project/read_file.c
+read_file.h
+C:/Users/alisa/Desktop/c final project/read_file.h
 Gameread.h
-C:/Users/IDEA/Desktop/c_final_project/Gameread.h
-stdio.h
--
-stdlib.h
--
-string.h
--
-
-C:/Users/IDEA/Desktop/c_final_project/Gameread.h
-
-C:/Users/IDEA/Desktop/c_final_project/main.c
-stdio.h
--
-read_file.h
-C:/Users/IDEA/Desktop/c_final_project/read_file.h
-
-C:/Users/IDEA/Desktop/c_final_project/read_file.c
-read_file.h
-C:/Users/IDEA/Desktop/c_final_project/read_file.h
+C:/Users/alisa/Desktop/c final project/Gameread.h
+gameconf.h
+C:/Users/alisa/Desktop/c final project/gameconf.h
 stdio.h
 -
 stdlib.h
 -
 
-C:/Users/IDEA/Desktop/c_final_project/read_file.h
+C:/Users/alisa/Desktop/c final project/read_file.h
 

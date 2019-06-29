@@ -3,10 +3,13 @@
 //
 
 #include "read_file.h"
-
+#include "Gameread.h"
+#include "gameconf.h"
 #include<stdio.h>
 #include <stdlib.h>
 char array[1000][1000];
+
+extern struct game_conf_struct game_conf;
 
 void read_file () {
     FILE *map;
