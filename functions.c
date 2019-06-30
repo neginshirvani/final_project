@@ -42,11 +42,11 @@ void movement_1(){
         }
         /* now let's write something for the raindb :) I hope k narinm:/ */
         /* khb mn nemirinm vli khb nega aln inja b nazaram bayad vse in ye char arr dar nazar begirima:/ */
-        /*else if(key == game_conf.raindb[0]) {
-            for(int index = 0 ; index <= game_conf.raindb[2]) {
-                array[game_state.x_pos][game_state.y_pos] == game_conf.raindb[1];
+        else if(key == game_conf.raindb) {
+            for(int index = 0 ; index <= game_conf.raindb ; index++) {
+                array[game_state.x_pos][game_state.y_pos] == game_conf.daethblock;
             }
-        }*/
+        }
 
 
     }
@@ -98,7 +98,7 @@ int game_time(float seconde){
             }
             /* if the block is an object block the thing I understood is that object and the target are the same:/ */
             /* Or maybe it is some thing that it should move toward the target:/ */
-            
+
 
 
 
