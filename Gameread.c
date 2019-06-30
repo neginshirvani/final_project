@@ -175,13 +175,47 @@ void fill_info(){
         printf("%d\n",game_conf.attack);
     }
 
+    else if(strcmp(key_name,"exit")==0){
+        game_conf.exitt=key[0];
+        printf("%c\n",game_conf.exitt);
+    }
+    else if(strcmp(key_name,"put")==0){
+        int i=0;
+        game_conf.put=key[i];
+        printf("%c\n",game_conf.put);
+        key_number=0;
+        i+=2;
+        while (key[i]!='\0'){
+            if(key[i]>='0' && key[i]<='9'){
 
-//
-//    if(strcmp(key_name,"exit")==0){
-//        printf("\nrape\n");
-//        game_conf.exitt=key;
-//        printf("%c",game_conf.exitt);
-//    }
+                key_number=key_number * 10 + key[i]- '0';
+
+            }
+
+            i++;
+
+        }
+        game_conf.put_num=key_number;
+        printf("%d\n",game_conf.put_num);
+    }
+
+
+    else if(strcmp(key_name,"raindb")==0){
+        game_conf.exitt=key[0];
+        int i=0;
+        key_number=0;
+        while(key[i]!='\0'){
+            if(key[i]>='0' && key[i]<='9'){
+
+                key_number=key_number * 10 + key[i]- '0';
+
+                i++;
+
+            }
+        }
+        game_conf.raindb=key_number;
+        printf("%d\n",game_conf.raindb);
+    }
 
 
 }

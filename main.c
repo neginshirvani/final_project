@@ -6,8 +6,13 @@
 extern struct game_conf_struct game_conf;
 
 int main() {
-    read_file();
-    game_read();
+  //  read_file();
+    //game_read();
     // printf("Hello, World!\n");
+    while(kbhit()){
+        char c ;
+
+    }
     return 0;
+
 }
