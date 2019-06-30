@@ -40,6 +40,17 @@ void movement_1(){
         else if(key == game_conf.exitt) {
             break;
         }
+        else if(key == game_conf.raindb) {
+            for(int index = 0 ; index <= game_conf.raindb ; index++) {
+                game_state.array[game_state.x_pos][game_state.y_pos] == game_conf.daethblock;
+            }
+        }
+        else if(key == game_conf.put) {
+            for(int next_index = 0; next_index <= game_conf.put_num; next_index++) {
+                game_state.array[game_state.x_pos][game_state.y_pos] == game_conf.daethblock;
+            }
+        }
+
         /* now let's write something for the raindb :) I hope k narinm:/ */
         /* khb mn nemirinm vli khb nega aln inja b nazaram bayad vse in ye char arr dar nazar begirima:/ */
         /*else if(key == game_conf.raindb[0]) {
@@ -117,37 +128,4 @@ int game_time(float seconde){
     }
 }
 
-/*
-void isSolid(int x, int y) {
-    if(game_state.array[x][y] == game_conf.solidb || game_state.array[x][y] == game_conf.wall) {
-        game_state.array[x][y] = game_state.array[game_state.x][game_state.y];
-    }
-}
-
-void isDeath(int x, int y) {
-    if(game_state.array[x][y] == game_conf.daethblock) {
-        system("cls");
-        printf("GAME OVER");
-    }
-}
-
-void isTarget(int x, int y) {
-    if(game_state.array[x][y] == game_conf.target) {
-        system("cls");
-        printf("YAAAAAAAY YOU WON!");
-    }
-}*/
-
-/* wonder if it is correct or not */
-/*void isMoveBlock(int x , int y) {
-    if(game_state.array[x][y] == game_conf.moveblock) {
-        game_state.array[x1_pos][y1_pos] = game_conf.moveblock;
-    }
-}
-
-void isPut(int x, int y) {
-    if(game_state.array[x][y] == game_conf.put) {
-        game_state.array[x][y] == game_conf.daethblock;
-    }
-}*/
 
