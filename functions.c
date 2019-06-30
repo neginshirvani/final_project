@@ -153,7 +153,8 @@ int random_point(int n){
     }
 }
 
-/* in agar seda zade beshe va faal bashe kar mikone albate vli ye soal pish miad va oonm inke agar tabe baqie esmesh farq kone chi:/*/
+/* in agar seda zade beshe va faal bashe kar mikone albate vli ye soal pish miad va
+ * oonm inke agar tabe baqie esmesh farq kone chi:/*/
 int random_deathblock() {
     int i = 0;
     int j = 1;

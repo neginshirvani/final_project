@@ -157,6 +157,24 @@ void fill_info(){
         printf("%c\n",game_conf.opp);
     }
 
+    else if(strcmp(key_name,"attack")==0){
+        int i=0;
+        key_number=0;
+
+        while (key[i]!='\0'){
+            if(key[i]>='0' && key[i]<='9'){
+
+                key_number=key_number * 10 + key[i]- '0';
+
+            }
+
+            i++;
+
+        }
+        game_conf.attack=key_number;
+        printf("%d\n",game_conf.attack);
+    }
+
 
 //
 //    if(strcmp(key_name,"exit")==0){

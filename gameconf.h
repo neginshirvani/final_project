@@ -16,7 +16,7 @@ struct game_conf_struct {
     char character; //player's char
     char target; // the goal that if specified obj reaches it player win
     char object; // win obj
-    char attack; //
+    int  attack; //
     char exitt; // exit key
     char put; // if player enter this char one deathblock place in it's pos
     int put_num; // specified how mane put player can enter
