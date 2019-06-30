@@ -111,6 +111,7 @@ int game_time(float seconde){
             else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.rpoint) {
                 game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.character;
                 random_point(1);
+                ++game_conf.rpoint_score;
             }
 
 
