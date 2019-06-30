@@ -9,12 +9,11 @@
 #include <string.h>
 extern struct game_conf_struct game_conf;
 char key_name [20];
-int a[3];
-char key[2];
+int key_number;
+char key[30];
 void sep(char inp[]){
 
     char b;
-    int j=0;
     int c=0;
     int i;
     for ( i = 0; inp[i]!='='; ++i) {
@@ -28,77 +27,102 @@ void sep(char inp[]){
         }
     }
     i++;
-
+    key_number=0;
     while(inp[i]!='\0'){
 
-        if(inp[i]>='0' && inp[i]<='9'){
+        key[c]=inp[i];
+        i++;
+        c++;
+//        if(inp[i]>='0' && inp[i]<='9'){
+//
+//            key_number=key_number * 10 + inp[i]- '0';
+//
+//            i++;
+//
+//        }
+//        else{
+//            if (inp[i]==',')
+//                i++;
+//            key[c]=inp[i];
+//
+//            i++;
+//            c++;
+//        }
 
-            a[j]=inp[i];
-            j++;
-            i++;
-
-        }
-        else{
-            key[c]=inp[i];
-
-            i++;
-            c++;
-        }
 
     }
+    key[c] = '\0';
 
 }
 void fill_info(){
     if(strcmp(key_name,"solidblock")==0||strcmp(key_name,"solid_block")==0) {
         game_conf.solidb = key[0];
-        printf("%c",game_conf.solidb);
-
+        printf("%c\n",game_conf.solidb);
     }
-    if(strcmp(key_name,"deathblock")==0||strcmp(key_name,"death_block")==0) {
+    else if(strcmp(key_name,"deathblock")==0||strcmp(key_name,"death_block")==0) {
         game_conf.daethblock = key[0];
-        printf("%c",game_conf.daethblock);
+        printf("%c\n",game_conf.daethblock);
     }
-    if(strcmp(key_name,"moveblock")==0||strcmp(key_name,"move_block")==0){
+    else if(strcmp(key_name,"moveblock")==0||strcmp(key_name,"move_block")==0){
         game_conf.moveblock=key[0];
-        printf("%c",game_conf.moveblock);
+        printf("%c\n",game_conf.moveblock);
     }
-    ///
-    if(strcmp(key_name,"wall")==0){
+    else if(strcmp(key_name,"wall")==0){
         game_conf.wall=key[0];
-        printf("%c",game_conf.wall);
+        printf("%c\n",game_conf.wall);
     }
-    if(strcmp(key_name,"up")==0){
+    else if(strcmp(key_name,"up")==0){
         game_conf.up=key[0];
-        printf("%c",game_conf.up);
+        printf("%c\n",game_conf.up);
     }
-    if(strcmp(key_name,"down")==0){
+    else if(strcmp(key_name,"down")==0){
             game_conf.down=key[0];
-        printf("%c",game_conf.down);
+        printf("%c\n",game_conf.down);
     }
-    if(strcmp(key_name,"left")==0){
+    else if(strcmp(key_name,"left")==0){
         game_conf.left=key[0];
-        printf("%c",game_conf.left);
+        printf("%c\n",game_conf.left);
     }
-    if(strcmp(key_name,"right")==0){
+    else if(strcmp(key_name,"right")==0){
         game_conf.right=key[0];
-        printf("%c",game_conf.right);
+        printf("%c\n",game_conf.right);
     }
-    if(strcmp(key_name,"target")==0){
+    else if(strcmp(key_name,"target")==0){
         game_conf.target=key[0];
-        printf("%c",game_conf.target);
+        printf("%c\n",game_conf.target);
     }
-    if(strcmp(key_name,"character")==0){
+    else if(strcmp(key_name,"character")==0){
         game_conf.character=key[0];
-        printf("%c",game_conf.character);
+        printf("%c\n",game_conf.character);
     }
-    if(strcmp(key_name,"object")==0){
+    else if(strcmp(key_name,"object")==0){
         game_conf.object=key[0];
-        printf("%c",game_conf.object);
+        printf("%c\n",game_conf.object);
     }
-//    if(strcmp(key_name,"put")==0){
-//        game_conf.put=key;
-//        printf("%c",game_conf.put);
-//    }
+    else if(strcmp(key_name,"time")==0){
+        int i=0;
+        key_number=0;
+        while(key[i]!='\0'){
+            if(key[i]>='0' && key[i]<='9'){
+
+                key_number=key_number * 10 + key[i]- '0';
+
+                i++;
+
+            }
+        }
+
+        game_conf.time=key_number;
+        printf("%d\n",game_conf.time);
+    }
+
+    else if(strcmp(key_name,"rpoint")==0||strcmp(key_name,"e_point")==0) {
+        game_conf.rpoint = key[0];
+        printf("%c\n",game_conf.solidb);
+    }
+
+
+//
 //    if(strcmp(key_name,"exit")==0){
 //        printf("\nrape\n");
 //        game_conf.exitt=key;
@@ -118,7 +142,7 @@ void game_read(){
         if((b!=' ')&&(b!='\n')){
 
             line[i]=b;
-            printf("y");
+
             i++;
         }
 
@@ -130,7 +154,6 @@ void game_read(){
             i=0;
 
         }
-        break;
 
     }
 

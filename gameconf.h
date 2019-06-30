@@ -31,4 +31,5 @@ struct game_state_struct{
     int y_pos;
     int x_change;
     int y_change;
+    char array[1000][1000];
 };
