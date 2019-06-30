@@ -41,11 +41,11 @@ void movement_1(){
         else if(key == game_conf.exitt) {
             break;
         }
-        else if(key == game_conf.raindb) {
-            for(int index = 0 ; index <= game_conf.raindb ; index++) {
-                game_state.array[game_state.x_pos][game_state.y_pos] == game_conf.daethblock;
-            }
-        }
+//        else if(key == game_conf.raindb) {
+//            for(int index = 0 ; index <= game_conf.raindb ; index++) {
+//                game_state.array[game_state.x_pos][game_state.y_pos] == game_conf.daethblock;
+//            }
+//        }
         else if(key == game_conf.put) {
             for(int next_index = 0; next_index <= game_conf.put_num; next_index++) {
                 game_state.array[game_state.x_pos][game_state.y_pos] == game_conf.daethblock;
@@ -151,6 +151,21 @@ int random_point(int n){
             ++i;
         }
     }
+}
 
-
+/* in agar seda zade beshe va faal bashe kar mikone albate vli ye soal pish miad va oonm inke agar tabe baqie esmesh farq kone chi:/*/
+int random_deathblock() {
+    int i = 0;
+    int j = 1;
+    int n = game_conf.raindb;
+    int random_y = 0;
+    int random_x = rand() % game_state.width;
+    for(i = 0; i <= n ; i++) {
+        game_state.array[random_x][random_y + j] = game_conf.daethblock;
+        j++;
+        game_state.array[random_x][random_y + j - 1] = ' ';
+        if(game_state.array[random_x][random_y + j] != ' ') {
+            game_state.array[random_x][random_y + j] = ' ';
+        }
+    }
 }
