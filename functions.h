@@ -12,3 +12,4 @@ int game_time(float seconde);
 int random_point(int n);
 int random_deathblock();
 void opp();
+int show_map();

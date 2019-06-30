@@ -15,4 +15,4 @@ opp=G,T
 attack=4
 put=p,D,5
 raindb=10
-Exit=q 
+Exit=q

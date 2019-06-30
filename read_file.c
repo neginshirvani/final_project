@@ -7,7 +7,7 @@
 #include "gameconf.h"
 #include<stdio.h>
 #include <stdlib.h>
-
+#include "functions.h"
 
 extern struct game_conf_struct game_conf;
 extern struct game_state_struct game_state;
@@ -57,15 +57,16 @@ void read_file () {
     }
     j=0;
 
-//    int ch;
-//    while(game_state.array[i][j]!='\0'){
-//
-//        putchar(game_state.array[i][j]);
-//        ch=game_state.array[i][j];
-//        ++j;
-//        if(ch=='\n'){
-//            ++i;
-//            j=0;
-//        }
-//    }
+    int ch;
+    while(game_state.array[i][j]!='\0'){
+
+        putchar(game_state.array[i][j]);
+        ch=game_state.array[i][j];
+        ++j;
+        if(ch=='\n'){
+            ++i;
+            j=0;
+        }
+    }
+
 }

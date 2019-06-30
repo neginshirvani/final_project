@@ -2,17 +2,21 @@
 #include "read_file.h"
 #include "Gameread.h"
 #include "gameconf.h"
-
+#include "functions.h"
 extern struct game_conf_struct game_conf;
 
 int main() {
-  //  read_file();
-    //game_read();
-    // printf("Hello, World!\n");
-    while(kbhit()){
-        char c ;
 
-    }
+    game_read();
+    read_file();
+    game_time(game_conf.time);
+
+
+    // printf("Hello, World!\n");
+//    while(kbhit()){
+//        char c ;
+//
+//    }
     return 0;
 
 }

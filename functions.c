@@ -8,6 +8,7 @@
 #include <windows.h>
 #include <conio.h>
 #include <time.h>
+#include "read_file.h"
 clock_t start ;
 //
 // Created by IDEA on 6/29/2019.
@@ -19,23 +20,24 @@ extern struct game_state_struct game_state;
 
 
 void movement_1(){
+    //printf("GO to ie zendegi sagi sanati");
     while(kbhit()) {
         int key = getch();
         if(key == game_conf.left) {
-            game_state.x_change = -1;
-            game_state.y_change = 0;
-        }
-        else if(key == game_conf.right) {
-            game_state.x_change = 1;
-            game_state.y_change = 0;
-        }
-        else if(key == game_conf.up) {
             game_state.x_change = 0;
             game_state.y_change = -1;
         }
-        else if(key == game_conf.down) {
+        else if(key == game_conf.right) {
             game_state.x_change = 0;
             game_state.y_change = 1;
+        }
+        else if(key == game_conf.up) {
+            game_state.x_change = -1;
+            game_state.y_change = 0;
+        }
+        else if(key == game_conf.down) {
+            game_state.x_change = 1;
+            game_state.y_change = 0;
         }
         /* now if the player wants to exit the game */
         else if(key == game_conf.exitt) {
@@ -69,6 +71,7 @@ int game_time(float seconde){
     seconde = game_conf.time;
     while(seconde  > 0){
         fflush(stdout) ;
+        //system("cls");
         if(clock() - start > 500){
 
             /* if there were a Solidblock or a wall */
@@ -93,19 +96,19 @@ int game_time(float seconde){
             else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.moveblock) {
                 if(game_state.x_change == 1) {
                     game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
-                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = game_conf.character;
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
                 }
                 else if(game_state.x_change == -1) {
                     game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
-                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = game_conf.character;
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
                 }
                 else if(game_state.y_change == 1) {
                     game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change + 1] = game_conf.moveblock;
-                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = game_conf.character;
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
                 }
                 else if(game_state.y_change == -1) {
                     game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change - 1] = game_conf.moveblock;
-                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = game_conf.character;
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
                 }
             }
             else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.rpoint) {
@@ -128,9 +131,10 @@ int game_time(float seconde){
                 game_state.array[ game_state.x_pos - game_state.x_change][game_state.y_pos - game_state.y_change]  = ' ';
             }
 
-
+            show_map();
             seconde -= 0.2;
             printf("\ntime remaining : %.1f" , seconde);
+
             start = clock();
         }
     }
@@ -191,4 +195,22 @@ void opp() {
     if(game_state.opp_y == game_state.target_y && game_state.opp_x == game_state.target_x) {
         printf("THE COMPUTER WON");
     }
+}
+
+int show_map() {
+    system("cls");
+    int i, j;
+    i = j = 0;
+    int ch;
+    while(game_state.array[i][j]!='\0') {
+
+        putchar(game_state.array[i][j]);
+        ch = game_state.array[i][j];
+        ++j;
+        if (ch == '\n') {
+            ++i;
+            j = 0;
+        }
+    }
+    movement_1();
 }
