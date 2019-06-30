@@ -17,6 +17,7 @@ clock_t start ;
 extern struct game_conf_struct game_conf;
 extern struct game_state_struct game_state;
 
+
 void movement_1(){
     while(kbhit()) {
         int key = getch();
@@ -107,9 +108,15 @@ int game_time(float seconde){
                     game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = game_conf.character;
                 }
             }
+            else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.rpoint) {
+                game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.character;
+                random_point(1);
+            }
+
+
             /* if the block is an object block the thing I understood is that object and the target are the same:/ */
             /* Or maybe it is some thing that it should move toward the target:/ */
-            
+
 
 
 
@@ -128,37 +135,21 @@ int game_time(float seconde){
     }
 }
 
-/*
-void isSolid(int x, int y) {
-    if(game_state.array[x][y] == game_conf.solidb || game_state.array[x][y] == game_conf.wall) {
-        game_state.array[x][y] = game_state.array[game_state.x][game_state.y];
+
+int random_point(int n){
+
+    int i  = 0 ;
+    int random_x = 0 ;
+    int random_y = 0 ;
+
+    while(i < n){
+        random_x = rand() % game_state.width;
+        random_y = rand() % game_state.length;
+        if(game_state.array[random_x][random_y] == ' '){
+            game_state.array[random_x][random_y] = game_conf.rpoint ;
+            ++i;
+        }
     }
+
+
 }
-
-void isDeath(int x, int y) {
-    if(game_state.array[x][y] == game_conf.daethblock) {
-        system("cls");
-        printf("GAME OVER");
-    }
-}
-
-void isTarget(int x, int y) {
-    if(game_state.array[x][y] == game_conf.target) {
-        system("cls");
-        printf("YAAAAAAAY YOU WON!");
-    }
-}*/
-
-/* wonder if it is correct or not */
-/*void isMoveBlock(int x , int y) {
-    if(game_state.array[x][y] == game_conf.moveblock) {
-        game_state.array[x1_pos][y1_pos] = game_conf.moveblock;
-    }
-}
-
-void isPut(int x, int y) {
-    if(game_state.array[x][y] == game_conf.put) {
-        game_state.array[x][y] == game_conf.daethblock;
-    }
-}*/
-

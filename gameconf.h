@@ -32,4 +32,6 @@ struct game_state_struct{
     int x_change;
     int y_change;
     char array[1000][1000];
+    int width;
+    int length;
 };

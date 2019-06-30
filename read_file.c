@@ -33,6 +33,11 @@ void read_file () {
             j = 0;
         }
     }
+
+    game_state.width = i - 1;
+    game_state.length = j;
+    printf("%d %d", game_state.width, game_state.length);
+
     fclose(map);
     game_state.array[i][j] = '\0';
     i = j = 0;
