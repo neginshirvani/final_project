@@ -154,7 +154,7 @@ void fill_info(){
 
     else if(strcmp(key_name,"opp")==0){
         game_conf.opp=key[0];
-        printf("%c\n",game_conf.object);
+        printf("%c\n",game_conf.opp);
     }
 
 
