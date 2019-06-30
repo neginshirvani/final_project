@@ -34,4 +34,8 @@ struct game_state_struct{
     char array[1000][1000];
     int width;
     int length;
+    int target_x;
+    int target_y;
+    int opp_x;
+    int opp_y;
 };

@@ -11,3 +11,4 @@ void movement_1();
 int game_time(float seconde);
 int random_point(int n);
 int random_deathblock();
+void opp();

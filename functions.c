@@ -170,3 +170,25 @@ int random_deathblock() {
         }
     }
 }
+
+void opp() {
+    while (game_state.opp_y != game_state.target_y) {
+        if (game_state.opp_y > game_state.target_y) {
+            --game_state.opp_y;
+        }
+        else
+            ++game_state.opp_y;
+    }
+
+    while (game_state.opp_x != game_state.target_x) {
+        if (game_state.opp_x > game_state.target_x) {
+            --game_state.opp_x;
+        }
+        else
+            ++game_state.opp_x;
+    }
+
+    if(game_state.opp_y == game_state.target_y && game_state.opp_x == game_state.target_x) {
+        printf("THE COMPUTER WON");
+    }
+}

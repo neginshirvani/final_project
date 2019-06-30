@@ -24,8 +24,16 @@ void read_file () {
         game_state.array[i][j] = c;
         /* position of the character */
         if (c == game_conf.character) {
-            game_state.x_pos = j;
-            game_state.y_pos = i;
+            game_state.x_pos = i;
+            game_state.y_pos = j;
+        }
+        if (c == game_conf.target) {
+            game_state.target_x = i;
+            game_state.target_y = j;
+        }
+        if (c == game_conf.opp) {
+            game_state.opp_x = i;
+            game_state.opp_y = j;
         }
         ++j;
         if (c == '\n') {
