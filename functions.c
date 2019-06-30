@@ -40,6 +40,7 @@ void movement_1(){
         else if(key == game_conf.exitt) {
             break;
         }
+
         /* now let's write something for the raindb :) I hope k narinm:/ */
         /* khb mn nemirinm vli khb nega aln inja b nazaram bayad vse in ye char arr dar nazar begirima:/ */
         /*else if(key == game_conf.raindb[0]) {

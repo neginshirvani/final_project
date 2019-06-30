@@ -117,8 +117,44 @@ void fill_info(){
     }
 
     else if(strcmp(key_name,"rpoint")==0||strcmp(key_name,"e_point")==0) {
-        game_conf.rpoint = key[0];
-        printf("%c\n",game_conf.solidb);
+        int i = 0;
+        game_conf.rpoint = key[i];
+        i += 2;
+        printf("%c\n",game_conf.rpoint);
+        key_number=0;
+        while (key[i]!=','){
+            if(key[i]>='0' && key[i]<='9'){
+
+                key_number=key_number * 10 + key[i]- '0';
+
+                i++;
+
+            }
+
+        }
+        game_conf.rpoint_score=key_number;
+        printf("%d\n",game_conf.rpoint_score);
+        key_number=0;
+        i++;
+        while (key[i]!='\0'){
+            if(key[i]>='0' && key[i]<='9'){
+
+                key_number=key_number * 10 + key[i]- '0';
+
+            }
+
+            i++;
+
+        }
+        game_conf.rpoint_num=key_number;
+        printf("%d\n",game_conf.rpoint_num);
+
+    }
+
+
+    else if(strcmp(key_name,"opp")==0){
+        game_conf.opp=key[0];
+        printf("%c\n",game_conf.object);
     }
 
 

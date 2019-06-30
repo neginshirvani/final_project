@@ -43,6 +43,7 @@ void read_file () {
         }
     }
     j=0;
+
 //    int ch;
 //    while(game_state.array[i][j]!='\0'){
 //
