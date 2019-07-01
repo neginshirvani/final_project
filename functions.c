@@ -41,6 +41,7 @@ void movement_1(){
         }
         /* now if the player wants to exit the game */
         else if(key == game_conf.exitt) {
+            system("cls");
             break;
         }
 //        else if(key == game_conf.raindb) {
@@ -61,7 +62,7 @@ void movement_1(){
                 game_state.array[game_state.x_pos][game_state.y_pos] == game_conf.raindb[1];
             }
         }*/
-
+        //random_deathblock();
 
     }
 }
@@ -82,6 +83,7 @@ int game_time(float seconde){
             else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.daethblock) {
                 /* first clean the screen then print game over and then come out */
                 system("cls");
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
                 printf("GAME OVER!");
                 break;
             }
@@ -89,32 +91,78 @@ int game_time(float seconde){
             /* if the character richs the target it will win */
             else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.target) {
                 system("cls");
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_INTENSITY);
                 printf("YOU WON :)");
                 break;
             }
             /* if there were a moveblock there */
             else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.moveblock) {
                 if(game_state.x_change == 1) {
-                    game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
-                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
+                    if(game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos + game_state.y_change] == game_conf.wall || game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos + game_state.y_change] == game_conf.solidb || game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos + game_state.y_change] == game_conf.daethblock ||game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos + game_state.y_change] == game_conf.target || game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos + game_state.y_change] == game_conf.rpoint ) {
+                        game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
+                    }
+                    else {
+                        game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos +
+                                                                                     game_state.y_change] = game_conf.moveblock;
+                        game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                                 game_state.y_change] = game_conf.character;
+                        game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos +
+                                                                                     game_state.y_change] = ' ';
+                    }
                 }
                 else if(game_state.x_change == -1) {
-                    game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
-                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
+                    if(game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos + game_state.y_change] == game_conf.wall || game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos + game_state.y_change] == game_conf.solidb || game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos + game_state.y_change] == game_conf.daethblock || game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos + game_state.y_change] == game_conf.target || game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos + game_state.y_change] == game_conf.rpoint) {
+                        game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
+                    }
+                    else {
+                        game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos +
+                                                                                     game_state.y_change] = game_conf.moveblock;
+                        game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                                 game_state.y_change] = game_conf.character;
+                        game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos +
+                                                                                     game_state.y_change] = ' ';
+                    }
                 }
                 else if(game_state.y_change == 1) {
-                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change + 1] = game_conf.moveblock;
-                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
+                    if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change + 1] == game_conf.wall || game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change + 1] == game_conf.solidb || game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change + 1] == game_conf.daethblock || game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change + 1] == game_conf.daethblock || game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change + 1] == game_conf.rpoint) {
+                        game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
+                    }
+                    else {
+                        game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                                 game_state.y_change +
+                                                                                 1] = game_conf.moveblock;
+                        game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                                 game_state.y_change] = game_conf.character;
+                        game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                                 game_state.y_change - 1] = ' ';
+                    }
                 }
                 else if(game_state.y_change == -1) {
-                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change - 1] = game_conf.moveblock;
-                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
+                    if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change - 1] == game_conf.wall || game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change - 1] == game_conf.solidb || game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change - 1] == game_conf.daethblock || game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos + game_state.y_change] == game_conf.target || game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change - 1] == game_conf.rpoint) {
+                        game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
+                    }
+                    else {
+                        game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                                 game_state.y_change -
+                                                                                 1] = game_conf.moveblock;
+                        game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                                 game_state.y_change] = game_conf.character;
+                        game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                                 game_state.y_change + 1] = ' ';
+                    }
+
                 }
+
+//                if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] != ' ') {
+//                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
+//                }
             }
             else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.rpoint) {
-                game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.character;
+                game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = game_conf.character;
+                game_state.array[game_state.x_pos][game_state.y_pos] = ' ';
                 random_point(1);
                 ++game_conf.rpoint_score;
+                //printf("%d", game_conf.rpoint_score);
             }
 
 
@@ -202,6 +250,7 @@ int show_map() {
     int i, j;
     i = j = 0;
     int ch;
+    //SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
     while(game_state.array[i][j]!='\0') {
 
         putchar(game_state.array[i][j]);
@@ -212,5 +261,8 @@ int show_map() {
             j = 0;
         }
     }
+    system("COLOR 3");
+    //random_deathblock();
     movement_1();
+
 }

@@ -8,6 +8,8 @@
 #include<stdio.h>
 #include <stdlib.h>
 #include "functions.h"
+#include <conio.h>
+#include <windows.h>
 
 extern struct game_conf_struct game_conf;
 extern struct game_state_struct game_state;
@@ -24,10 +26,12 @@ void read_file () {
         game_state.array[i][j] = c;
         /* position of the character */
         if (c == game_conf.character) {
+            //SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
             game_state.x_pos = i;
             game_state.y_pos = j;
         }
         if (c == game_conf.target) {
+            //SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_INTENSITY);
             game_state.target_x = i;
             game_state.target_y = j;
         }
@@ -68,5 +72,4 @@ void read_file () {
             j=0;
         }
     }
-
 }
