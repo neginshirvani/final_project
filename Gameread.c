@@ -221,7 +221,10 @@ void fill_info(){
 
 }
 void game_read(){
-
+//    printf("please enter your info name ... \n");
+//    char info_name[50];
+//    scanf("%s",info_name);
+//    FILE *file=fopen(info_name,"r");
     FILE *file=fopen("game-pacman.txt","r");
     char line[30];
     char b;
