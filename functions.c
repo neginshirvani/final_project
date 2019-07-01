@@ -41,8 +41,9 @@ void movement_1(){
         }
         /* now if the player wants to exit the game */
         else if(key == game_conf.exitt) {
-            system("cls");
-            break;
+            //system("cls");
+            //break;
+            exit(0);
         }
 //        else if(key == game_conf.raindb) {
 //            for(int index = 0 ; index <= game_conf.raindb ; index++) {
@@ -50,8 +51,17 @@ void movement_1(){
 //            }
 //        }
         else if(key == game_conf.put) {
-            for(int next_index = 0; next_index <= game_conf.put_num; next_index++) {
-                game_state.array[game_state.x_pos][game_state.y_pos] == game_conf.daethblock;
+            //for(int next_index = 0; next_index <= game_conf.put_num; next_index++) {
+            if(game_conf.put_num>0){
+                if(game_state.y_change == -1)
+                    game_state.array[game_state.x_pos][(game_state.y_pos) + 1] = game_conf.daethblock;
+                else if (game_state.y_change == 1)
+                    game_state.array[game_state.x_pos][(game_state.y_pos)-1] = game_conf.daethblock;
+                else if (game_state.x_change == 1)
+                    game_state.array[game_state.x_pos-1][(game_state.y_pos)] = game_conf.daethblock;
+                else if (game_state.x_change == -1)
+                    game_state.array[game_state.x_pos+1][(game_state.y_pos)] = game_conf.daethblock;
+                game_conf.put_num--;
             }
         }
 
@@ -267,7 +277,7 @@ int game_time(float timee){
                     }
                 }
 
-             else if (
+             /*else if (
                     game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] ==
                     game_conf.rpoint) {
                 game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] =
@@ -277,7 +287,7 @@ int game_time(float timee){
 //                if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] != ' ') {
 //                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
 //                }
-            }
+            }*/
             else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.rpoint) {
                 game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = game_conf.character;
                 game_state.array[game_state.x_pos][game_state.y_pos] = ' ';
@@ -304,7 +314,7 @@ int game_time(float timee){
 
 
         printf( "\nTime remaining %.2f ",time_left);
-        wait(0.2);
+        wait(0.02);
     }
 
 
@@ -402,20 +412,44 @@ int random_point(int n){
 /* in agar seda zade beshe va faal bashe kar mikone albate vli ye soal pish miad va
  * oonm inke agar tabe baqie esmesh farq kone chi:/*/
 int random_deathblock() {
+    char rain[game_state.length];
+
+    //    int i = 0;
+//    int j = 1;
+//    int n = game_conf.raindb;
+//    int y = 1;
+//    int random_x = rand() % game_state.width;
+//    int flag = n;
+//    while(n > 0) {
+//        //for (i = 0; i <= flag; i++) {
+//        game_state.array[y + j][random_x] = game_conf.daethblock;
+//        j++;
+//        game_state.array[y][random_x] = ' ';
+//        n--;
+//        if(game_state.array[random_x][random_y + j] == ' ') {
+//            game_state.array[random_x][random_y + j] = game_conf.daethblock;
+//        }
+        
+    }
+
+
+/* attack mizane jlosho khali mikone */
+int attack() {
+    int n = game_conf.attack;
     int i = 0;
-    int j = 1;
-    int n = game_conf.raindb;
-    int random_y = 0;
-    int random_x = rand() % game_state.width;
-    for(i = 0; i <= n ; i++) {
-        game_state.array[random_x][random_y + j] = game_conf.daethblock;
-        j++;
-        game_state.array[random_x][random_y + j - 1] = ' ';
-        if(game_state.array[random_x][random_y + j] != ' ') {
-            game_state.array[random_x][random_y + j] = ' ';
-        }
+    if(n>0){
+        if(game_state.y_change == -1)
+            game_state.array[game_state.x_pos][(game_state.y_pos) + game_conf.attack] = game_conf.daethblock;
+        else if (game_state.y_change == 1)
+            game_state.array[game_state.x_pos][(game_state.y_pos)- game_conf.attack] = game_conf.daethblock;
+        else if (game_state.x_change == 1)
+            game_state.array[game_state.x_pos-game_conf.attack][(game_state.y_pos)] = game_conf.daethblock;
+        else if (game_state.x_change == -1)
+            game_state.array[game_state.x_pos+game_conf.attack][(game_state.y_pos)] = game_conf.daethblock;
+        n--;
     }
 }
+
 
 void opp() {
     while (game_state.opp_y != game_state.target_y) {
@@ -447,6 +481,7 @@ int show_map() {
     //SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
 
    // int ch;
+    random_deathblock();
     while(i<game_state.width+2) {
         puts(game_state.array[i]);
         i++;
