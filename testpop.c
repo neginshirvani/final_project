@@ -36,7 +36,7 @@ int mapp(int y , int x){
 }
 
 int show_mapp(int y , int x){
-    system("cls") ;
+    //system("cls") ;
     int i, j;
     for (j=0;j<y;++j){
         for (i=0;i<x;++i){

@@ -66,60 +66,90 @@ void movement_1(){
     }
 }
 
+void wait ( float seconds )
+{
+    clock_t endwait;
+    endwait = clock () + seconds * CLOCKS_PER_SEC ;
+    while (clock() < endwait) {}
+}
 
-int game_time(float seconde){
-    seconde = game_conf.time;
-    while(seconde  > 0){
-        fflush(stdout) ;
-        //system("cls");
-        if(clock() - start > 500){
-
+int game_time(float timee){
+    float count_down_time_in_secs=timee;
+    float x_seconds=0;
+    float x_milliseconds=0;
+    float totaltime=0;
+    float time_left=0;
+    clock_t x_startTime,x_countTime;
+    x_startTime=clock();
+    time_left=count_down_time_in_secs-x_seconds;
+    while (time_left>0){
+        x_countTime=clock(); // update timer difference
+        x_milliseconds=x_countTime-x_startTime;
+        x_seconds=(x_milliseconds/(CLOCKS_PER_SEC));//-(x_minutes*60);
+        time_left=count_down_time_in_secs-x_seconds; // subtract to get difference
+        
+            //fflush(stdout);
+            system("cls");
             /* if there were a Solidblock or a wall */
-            if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.solidb || game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.wall)
-                game_state.array[game_state.x_pos][game_state.y_pos]  = game_conf.character;
 
-            /* if the block were a deathblock the game will end */
-            else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.daethblock) {
+            if (game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] ==
+                game_conf.solidb ||
+                game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] ==
+                game_conf.wall)
+                game_state.array[game_state.x_pos][game_state.y_pos] = game_conf.character;
+
+                /* if the block were a deathblock the game will end */
+            else if (game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] ==
+                     game_conf.daethblock) {
                 /* first clean the screen then print game over and then come out */
                 system("cls");
                 printf("GAME OVER!");
                 break;
             }
 
-            /* if the character richs the target it will win */
-            else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.target) {
+                /* if the character richs the target it will win */
+            else if (game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] ==
+                     game_conf.target) {
                 system("cls");
                 printf("YOU WON :)");
                 break;
             }
-            /* if there were a moveblock there */
-            else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.moveblock) {
-                if(game_state.x_change == 1) {
-                    game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
-                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
+                /* if there were a moveblock there */
+            else if (game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] ==
+                     game_conf.moveblock) {
+                if (game_state.x_change == 1) {
+                    game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos +
+                                                                                 game_state.y_change] = game_conf.moveblock;
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change] = ' ';
+                } else if (game_state.x_change == -1) {
+                    game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos +
+                                                                                 game_state.y_change] = game_conf.moveblock;
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change] = ' ';
+                } else if (game_state.y_change == 1) {
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change +
+                                                                             1] = game_conf.moveblock;
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change] = ' ';
+                } else if (game_state.y_change == -1) {
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change -
+                                                                             1] = game_conf.moveblock;
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change] = ' ';
                 }
-                else if(game_state.x_change == -1) {
-                    game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
-                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
-                }
-                else if(game_state.y_change == 1) {
-                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change + 1] = game_conf.moveblock;
-                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
-                }
-                else if(game_state.y_change == -1) {
-                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change - 1] = game_conf.moveblock;
-                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
-                }
-            }
-            else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.rpoint) {
-                game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.character;
+            } else if (
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] ==
+                    game_conf.rpoint) {
+                game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] ==
+                game_conf.character;
                 random_point(1);
                 ++game_conf.rpoint_score;
             }
 
 
-            /* if the block is an object block the thing I understood is that object and the target are the same:/ */
-            /* Or maybe it is some thing that it should move toward the target:/ */
+                /* if the block is an object block the thing I understood is that object and the target are the same:/ */
+                /* Or maybe it is some thing that it should move toward the target:/ */
 
 
 
@@ -127,18 +157,90 @@ int game_time(float seconde){
             else {
                 game_state.y_pos += game_state.y_change;
                 game_state.x_pos += game_state.x_change;
-                game_state.array[game_state.x_pos][game_state.y_pos]  = game_conf.character;
-                game_state.array[ game_state.x_pos - game_state.x_change][game_state.y_pos - game_state.y_change]  = ' ';
+                game_state.array[game_state.x_pos][game_state.y_pos] = game_conf.character;
+                game_state.array[game_state.x_pos - game_state.x_change][game_state.y_pos - game_state.y_change] = ' ';
             }
 
             show_map();
-            seconde -= 0.2;
-            printf("\ntime remaining : %.1f" , seconde);
+        
 
-            start = clock();
-        }
+        printf( "\nTime remaining %.2f ",time_left);
     }
+
+
 }
+//int game_time(float left_time){
+//
+//    while(left_time  > 0){
+//        fflush(stdout) ;
+//        //system("cls");
+//        if(clock() - start > 500){
+//
+//            /* if there were a Solidblock or a wall */
+//            if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.solidb || game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.wall)
+//                game_state.array[game_state.x_pos][game_state.y_pos]  = game_conf.character;
+//
+//            /* if the block were a deathblock the game will end */
+//            else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.daethblock) {
+//                /* first clean the screen then print game over and then come out */
+//                system("cls");
+//                printf("GAME OVER!");
+//                break;
+//            }
+//
+//            /* if the character richs the target it will win */
+//            else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.target) {
+//                system("cls");
+//                printf("YOU WON :)");
+//                break;
+//            }
+//            /* if there were a moveblock there */
+//            else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.moveblock) {
+//                if(game_state.x_change == 1) {
+//                    game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
+//                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
+//                }
+//                else if(game_state.x_change == -1) {
+//                    game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
+//                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
+//                }
+//                else if(game_state.y_change == 1) {
+//                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change + 1] = game_conf.moveblock;
+//                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
+//                }
+//                else if(game_state.y_change == -1) {
+//                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change - 1] = game_conf.moveblock;
+//                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
+//                }
+//            }
+//            else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.rpoint) {
+//                game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.character;
+//                random_point(1);
+//                ++game_conf.rpoint_score;
+//            }
+//
+//
+//            /* if the block is an object block the thing I understood is that object and the target are the same:/ */
+//            /* Or maybe it is some thing that it should move toward the target:/ */
+//
+//
+//
+//
+//            else {
+//                game_state.y_pos += game_state.y_change;
+//                game_state.x_pos += game_state.x_change;
+//                game_state.array[game_state.x_pos][game_state.y_pos]  = game_conf.character;
+//                game_state.array[ game_state.x_pos - game_state.x_change][game_state.y_pos - game_state.y_change]  = ' ';
+//            }
+//
+//            show_map();
+//            left_time -= 0.2;
+//            printf("\ntime remaining : %.2f" , left_time);
+//
+//            start = clock();
+//        }
+//    }
+//}
 
 
 int random_point(int n){
@@ -198,7 +300,7 @@ void opp() {
 }
 
 int show_map() {
-    system("cls");
+
     int i, j;
     i = j = 0;
     int ch;
