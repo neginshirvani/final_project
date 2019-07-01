@@ -38,4 +38,8 @@ struct game_state_struct{
     int target_y;
     int opp_x;
     int opp_y;
+    int raindbb[100][2];
+    int raindb_x;
+    int raindb_y;
+
 };

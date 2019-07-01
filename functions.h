@@ -13,3 +13,4 @@ int random_point(int n);
 int random_deathblock();
 void opp();
 int show_map();
+int raindb();

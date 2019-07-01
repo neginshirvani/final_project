@@ -56,9 +56,10 @@ void read_file () {
     printf("%d %d", game_state.width, game_state.length);
 
     fclose(map);
+    //random_deathblock();
     game_state.array[i][j] = '\0';
     i = j = 0;
-    for (j=0;game_state.array[i][j]!='#';++j){   // finding first block of map
+    for (j=0;game_state.array[i][j]!=game_conf.wall;++j){   // finding first block of map
         if(game_state.array[i][j]=='\n'){
             ++i;
             j=0;
