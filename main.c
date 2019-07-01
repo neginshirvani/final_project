@@ -4,10 +4,11 @@
 #include "gameconf.h"
 #include "functions.h"
 #include <conio.h>
+#include "menu.h"
 extern struct game_conf_struct game_conf;
 
 int main() {
-    
+    main_menu();
     game_read();
     read_file();
     game_time(game_conf.time);
