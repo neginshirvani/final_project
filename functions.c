@@ -77,7 +77,7 @@ int game_time(float timee){
     float count_down_time_in_secs=timee;
     float x_seconds=0;
     float x_milliseconds=0;
-    float totaltime=0;
+  //  float totaltime=0;
     float time_left=0;
     clock_t x_startTime,x_countTime;
     x_startTime=clock();
@@ -87,7 +87,7 @@ int game_time(float timee){
         x_milliseconds=x_countTime-x_startTime;
         x_seconds=(x_milliseconds/(CLOCKS_PER_SEC));//-(x_minutes*60);
         time_left=count_down_time_in_secs-x_seconds; // subtract to get difference
-        
+
             //fflush(stdout);
             system("cls");
             /* if there were a Solidblock or a wall */
@@ -112,6 +112,7 @@ int game_time(float timee){
                      game_conf.target) {
                 system("cls");
                 printf("YOU WON :)");
+                getchar();
                 break;
             }
                 /* if there were a moveblock there */
@@ -162,9 +163,10 @@ int game_time(float timee){
             }
 
             show_map();
-        
+
 
         printf( "\nTime remaining %.2f ",time_left);
+        wait(0.2);
     }
 
 
@@ -301,18 +303,20 @@ void opp() {
 
 int show_map() {
 
-    int i, j;
-    i = j = 0;
-    int ch;
-    while(game_state.array[i][j]!='\0') {
-
-        putchar(game_state.array[i][j]);
-        ch = game_state.array[i][j];
-        ++j;
-        if (ch == '\n') {
-            ++i;
-            j = 0;
-        }
+    int i;
+    i = 2;
+   // int ch;
+    while(i<game_state.width+2) {
+        puts(game_state.array[i]);
+        i++;
+//        putchar(game_state.array[i][j]);
+//        ch = game_state.array[i][j];
+//        ++j;
+//        if (ch == '\n') {
+//            ++i;
+//            j = 0;
+//        }
     }
+
     movement_1();
 }

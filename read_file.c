@@ -16,6 +16,10 @@ extern struct game_state_struct game_state;
 
 void read_file () {
     FILE *map;
+//    printf("please enter your map name ... \n");
+//    char map_name[50];
+//    scanf("%s",map_name);
+//    map = fopen(map_name, "r");
     map = fopen("map-pacman.txt", "r");
     char c;
     int i = 0;
@@ -37,6 +41,7 @@ void read_file () {
         }
         ++j;
         if (c == '\n') {
+            game_state.array[i][j-1]='\0';
             ++i;
             j = 0;
         }
