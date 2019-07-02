@@ -456,7 +456,7 @@ int show_map() {
 //            j = 0;
 //        }
     }
-    system("COLOR 3");
+//    system("COLOR 3");
     //random_deathblock();
 
     movement_1();

@@ -36,10 +36,7 @@ void welcome(){
 }
 int main() {
     game_conf.theme_num=15;
-    for (int i = 0; i <50 ; ++i) {
-        system("cls");
-        welcome();
-    }
+
     welcome();
     main_menu();
 //    game_read();
