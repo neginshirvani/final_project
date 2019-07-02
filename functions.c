@@ -89,7 +89,7 @@ int game_time(float timee) {
         //fflush(stdout);
         system("cls");
         /* if there were a Solidblock or a wall */
-        //raindb();
+        raindb();
 
         if (game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] ==
             game_conf.solidb ||
@@ -487,6 +487,7 @@ int random_deathblock() {
 
         } else {
             game_state.array[y][random_x] = game_conf.daethblock;
+
 //
         }
 
@@ -502,9 +503,18 @@ int random_deathblock() {
 int raindb() {
 
     for (int i = 0; i < game_conf.raindb; i++) {
-        game_state.raindbb[i][0]++;
-        game_state.array[game_state.raindbb[i][0]][game_state.raindbb[i][1]] = game_conf.daethblock;
-        game_state.array[game_state.raindbb[i][0] - 1][game_state.raindbb[i][1]] = ' ';
+
+        if(game_state.raindbb[i][0] > game_state.length) {
+            game_state.raindbb[i][0]=4;
+            game_state.array[game_state.raindbb[i][0]][game_state.raindbb[i][1]] = game_conf.daethblock;
+            game_state.array[game_state.raindbb[i][0] - 1][game_state.raindbb[i][1]] = ' ';
+
+        } else {
+            game_state.raindbb[i][0]++;
+            game_state.array[game_state.raindbb[i][0]][game_state.raindbb[i][1]] = game_conf.daethblock;
+            game_state.array[game_state.raindbb[i][0] - 1][game_state.raindbb[i][1]] = ' ';
+
+        }
 
     }
 
