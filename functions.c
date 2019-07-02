@@ -365,6 +365,7 @@ int random_deathblock() {
 
                 int y_j = y + j;
                 game_state.array[y_j - 1][random_x] = ' ';
+                // TODO fek konam inja bayad wait bezari ye kuchulu
                 game_state.array[y + j][random_x] = game_conf.daethblock;
                 //game_state.array[y + j][random_x] = ' ';
 
@@ -458,7 +459,6 @@ int show_map() {
     //raindb();
     while (i < game_state.width + 2) {
 
-
         puts(game_state.array[i]);
         i++;
 //        putchar(game_state.array[i][j]);
@@ -468,6 +468,7 @@ int show_map() {
 //            ++i;
 //            j = 0;
 //        }
+
     }
     system("COLOR 3");
     //random_deathblock();

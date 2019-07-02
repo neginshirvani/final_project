@@ -28,6 +28,7 @@ void welcome(){
     }
 }
 int main() {
+    game_conf.theme_num=15;
     //welcome();
     main_menu();
 //    game_read();

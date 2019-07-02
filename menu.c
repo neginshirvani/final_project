@@ -28,7 +28,7 @@ void main_menu(){
         printf("*  ");
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED);
         printf("4. Exit.");
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), game_conf.theme_num);
         printf("                              *\n");
         printf("*                                        *\n");
         printf("******************************************\n");
@@ -57,29 +57,56 @@ void main_menu(){
     settings();
 }
 void theme(){
-    printf("\n******************************************\n");
-    printf("* -->theme :                             *\n");
-    printf("*  1.                        *\n");
-    printf("*  2. change font                        *\n");
-    printf("*  2. change font                        *\n");
-    printf("*  3. Back to menu                       *\n");
-    printf("*                                        *\n");
-    printf("******************************************\n");
-}
-void font(){
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), game_conf.theme_num);
+    char ch = 0;
+    while (ch!='4') {
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), game_conf.theme_num);
+        system("cls");
+        printf("\n******************************************\n");
+        printf("* -->theme :                             *\n");
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+        printf("*  1. mode 1                             *\n");
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), game_conf.theme_num);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+        printf("*  2. mode 2                             *\n");
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+        printf("*  3. normal mode                        *\n");
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), game_conf.theme_num);
+        printf("*  4. back to menu                       *\n");
+        printf("*                                        *\n");
+        printf("******************************************\n");
+        ch=getchar();
+        getchar();
+        switch (ch){
+            case '1':
+                game_conf.theme_num=10;
+                //SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+                break;
+
+            case '2':
+                game_conf.theme_num=9;
+                //SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+                break;
+            case '3':
+                game_conf.theme_num=15;
+                //SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+                break;
+        }
+    }
 
 }
+
 void settings(){
     char ch = 0;
-    while (ch!='3') {
+    while (ch!='2') {
         system("cls");
 
         printf("\n******************************************\n");
-        printf("* -->setting :                           *\n");
+        printf("* -->theme :                             *\n");
         printf("*                                        *\n");
         printf("*  1. change theme                       *\n");
-        printf("*  2. change font                        *\n");
-        printf("*  3. Back to menu                       *\n");
+        printf("*  2. Back to menu                       *\n");
+        printf("*                                        *\n");
         printf("*                                        *\n");
         printf("******************************************\n");
         ch=getchar();
@@ -90,7 +117,7 @@ void settings(){
                 break;
 
             case '2':
-                font();
+
                 break;
 
         }

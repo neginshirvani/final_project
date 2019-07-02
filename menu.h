@@ -9,6 +9,6 @@
 
 void main_menu();
 void theme();
-void font();
+
 void settings();
 void best_score();
