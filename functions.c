@@ -93,6 +93,7 @@ int game_time(float timee) {
     clock_t x_startTime, x_countTime;
     x_startTime = clock();
     time_left = count_down_time_in_secs - x_seconds;
+    int flag = 0;
     while (time_left > 0) {
         x_countTime = clock(); // update timer difference
         x_milliseconds = x_countTime - x_startTime;
@@ -102,6 +103,7 @@ int game_time(float timee) {
         //fflush(stdout);
         system("cls");
         /* if there were a Solidblock or a wall */
+        raindb();
 
         if (game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] ==
             game_conf.solidb ||
@@ -343,15 +345,15 @@ int random_deathblock() {
     int y = 4;
     int random_x = 0;
     int i = 0;
-    //for (int j = 0; j < game_state.width; j++) {
+
     for (i = 0; i < game_conf.raindb; i++) {
         random_x = rand() % game_state.length;
         if (random_x == 0) {
             random_x = rand() % game_state.length;
         }
-        game_state.raindbb[y][0] = random_x;
-        game_state.raindbb[y][1] = 1;
-//        getchar();
+        game_state.raindbb[i][0] = 4;
+        game_state.raindbb[i][1] = random_x;
+
         if (game_state.array[y][random_x] == game_conf.wall ||
             game_state.array[y][random_x] == game_conf.daethblock ||
             game_state.array[y][random_x] == game_conf.solidb ||
@@ -360,49 +362,34 @@ int random_deathblock() {
             game_state.raindbb[y][0] = random_x;
             game_state.raindbb[y][1] = 1;
             game_state.array[y][random_x] = game_conf.daethblock;
-            int arz_zamin = game_state.length;
-            for (int j = 1; j < arz_zamin - 1; j++) {
 
-                int y_j = y + j;
-                game_state.array[y_j - 1][random_x] = ' ';
-                game_state.array[y + j][random_x] = game_conf.daethblock;
-                //game_state.array[y + j][random_x] = ' ';
-
-
-            }
         } else {
             game_state.array[y][random_x] = game_conf.daethblock;
-            int arz_zamin = game_state.length;
-            for (int j = 1; j < arz_zamin - 1; j++) {
-
-                int y_j = y + j;
-                game_state.array[y_j - 1][random_x] = ' ';
-                game_state.array[y + j][random_x] = game_conf.daethblock;
-
-                //game_state.array[y + j][random_x] = ' ';
-            }
+//
         }
 
 
     }
     game_state.raindb_x = y;
     game_state.raindb_y = random_x;
-    //raindb();
+
+
 
 
 }
 
 ////////////////////////////////////////////////rain
-//int raindb() {
-//    int arz_zamin = game_state.length;
-//    for(int j = 1; j < arz_zamin; j++) {
-//        game_state.array[game_state.raindb_y + j][game_state.raindb_x] = game_conf.daethblock;
-//        game_state.array[game_state.raindb_y][game_state.raindb_x] = ' ';
-//        game_state.array[game_state.raindb_y + j][game_state.raindb_x] = ' ';
-//
-//    }
-//
-//}
+int raindb() {
+
+    for(int i = 0; i < game_conf.raindb; i++) {
+        game_state.raindbb[i][0]++;
+        game_state.array[game_state.raindbb[i][0]][game_state.raindbb[i][1]] = game_conf.daethblock;
+        game_state.array[game_state.raindbb[i][0] - 1][game_state.raindbb[i][1]] = ' ';
+
+    }
+
+
+}
 
 /* attack mizane jlosho khali mikone */
 int attack() {
