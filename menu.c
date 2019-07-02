@@ -15,6 +15,7 @@ extern struct game_conf_struct game_conf;
 
 
 void main_menu(){
+
     char ch = 0;
     while(ch!='4'){
         system("cls");
@@ -41,6 +42,7 @@ void main_menu(){
                 break;
 
             case '2':
+                best_score();
 
                 break;
 
@@ -55,7 +57,14 @@ void main_menu(){
     settings();
 }
 void theme(){
-
+    printf("\n******************************************\n");
+    printf("* -->theme :                             *\n");
+    printf("*  1.                        *\n");
+    printf("*  2. change font                        *\n");
+    printf("*  2. change font                        *\n");
+    printf("*  3. Back to menu                       *\n");
+    printf("*                                        *\n");
+    printf("******************************************\n");
 }
 void font(){
 
@@ -86,4 +95,16 @@ void settings(){
 
         }
     }
+}
+void best_score(){
+    system("cls");
+    FILE *score=fopen("score.txt","r");
+    int i ;
+    char b;
+    for ( i = 0; (b=fgetc(score))!=EOF ; ++i) {
+        printf("%c",b);
+    }
+
+    printf("\npress enter to back to menu ... ");
+    getchar();
 }
