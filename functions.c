@@ -116,6 +116,8 @@ int game_time(float timee) {
             system("cls");
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
             printf("GAME OVER!");
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+
             getchar();
             break;
         }
@@ -126,6 +128,8 @@ int game_time(float timee) {
             system("cls");
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_INTENSITY);
             printf("YOU WON :)");
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+
             getchar();
             break;
         }
@@ -430,23 +434,20 @@ int random_deathblock() {
         } else {
             game_state.array[y][random_x] = game_conf.daethblock;
         }
-//        game_state.raindb_x = y;
-//        game_state.raindb_y = random_x;
-        //raindb();
-        /*for(int j = 4; j < game_state.width; j++) {
-            game_state.array[j][random_x] = game_conf.daethblock;
-            game_state.array[j - 1][random_x] = ' ';
-        }*/
-       // int j = 1;
-//        int arz_zamin = game_state.width;
-//        while(arz_zamin > 0) {
-//            game_state.array[y + 1][random_x] = game_conf.daethblock;
-//            game_state.array[y][random_x] = ' ';
-//            arz_zamin--;
-//
-//        }
+
 
     }
+    game_state.raindb_x = y;
+    game_state.raindb_y = random_x;
+    //raindb();
+    int arz_zamin = game_state.length;
+    for(int j = 1; j < arz_zamin; j++) {
+        game_state.array[y + j][random_x] = game_conf.daethblock;
+        game_state.array[y][random_x] = ' ';
+        game_state.array[y + j][random_x] = ' ';
+
+    }
+
 //        game_state.array[y][random_x] = ' ';
 //        game_state.array[y + 1][random_x] = game_conf.daethblock;
 //    }
@@ -468,15 +469,17 @@ int random_deathblock() {
 //        }
 
 ////////////////////////////////////////////////rain
-//int raindb() {
-//    int arz_zamin = game_state.length;
-//    while(arz_zamin > 0) {
-//        game_state.array[game_state.raindb_x + 1][game_state.raindb_y] = game_conf.daethblock;
-//        game_state.array[game_state.raindb_x][game_state.raindb_y] = ' ';
-//        arz_zamin--;
-//
-//    }
-//}
+int raindb() {
+    int arz_zamin = game_state.length;
+    for(int j = 1; j < arz_zamin; j++) {
+        game_state.array[game_state.raindb_y + j][game_state.raindb_x] = game_conf.daethblock;
+        game_state.array[game_state.raindb_y][game_state.raindb_x] = ' ';
+        game_state.array[game_state.raindb_y + j][game_state.raindb_x] = ' ';
+
+    }
+
+}
+
 /* attack mizane jlosho khali mikone */
 int attack() {
     int n = game_conf.attack;
@@ -518,7 +521,7 @@ void opp() {
 int show_map() {
 
     int i = 2;
-    int j=3;
+    int j = 3;
 
     //SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
 
