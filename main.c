@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
+#include <time.h>
+#include "menu.h"
 #include "read_file.h"
 #include "Gameread.h"
 #include "gameconf.h"
 #include "functions.h"
-#include <conio.h>
-#include <time.h>
 extern struct game_conf_struct game_conf;
 void welcome(){
     printf("   ____                        ____ __________ _____       ___________  ___________ ___          ____ __________ \n"
@@ -27,11 +28,11 @@ void welcome(){
     }
 }
 int main() {
-    welcome();
-
-    game_read();
-    read_file();
-    game_time(game_conf.time);
+    //welcome();
+    main_menu();
+//    game_read();
+//    read_file();
+//    game_time(game_conf.time);
   // printf("Hello, World!\n");
 //    while(kbhit()){
 //        char c ;
