@@ -185,7 +185,10 @@ int game_time(float timee) {
                                       game_conf.solidb ||
                     game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
                                                                              game_state.y_change + 1] ==
-                    game_conf.daethblock ||
+                    game_conf.daethblock || game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                                                     game_state.y_change +
+                                                                                                     1] ==
+                                            game_conf.target ||
                     game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
                                                                              game_state.y_change + 1] ==
                     game_conf.daethblock ||
@@ -279,9 +282,6 @@ int game_time(float timee) {
                     game_conf.daethblock ||
                     game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos +
                                                                                  game_state.y_change] ==
-                    game_conf.target ||
-                    game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos +
-                                                                                 game_state.y_change] ==
                     game_conf.rpoint) {
                     game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
                                                                              game_state.y_change] = game_conf.object;
@@ -292,7 +292,11 @@ int game_time(float timee) {
                                                                              game_state.y_change] = game_conf.character;
                     game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos +
                                                                                  game_state.y_change] = ' ';
-                    
+                    if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.target) {
+                        system("cls");
+                        printf("OBJECT GOT THE TARGET!");
+                    }
+
                 }
             } else if (game_state.x_change == -1) {
                 if (game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos +
@@ -306,9 +310,6 @@ int game_time(float timee) {
                     game_conf.daethblock ||
                     game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos +
                                                                                  game_state.y_change] ==
-                    game_conf.target ||
-                    game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos +
-                                                                                 game_state.y_change] ==
                     game_conf.rpoint) {
                     game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
                                                                              game_state.y_change] = game_conf.object;
@@ -319,6 +320,10 @@ int game_time(float timee) {
                                                                              game_state.y_change] = game_conf.character;
                     game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos +
                                                                                  game_state.y_change] = ' ';
+                    if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.target) {
+                        system("cls");
+                        printf("OBJECT GOT THE TARGET!");
+                    }
 
                 }
             } else if (game_state.y_change == 1) {
@@ -347,6 +352,10 @@ int game_time(float timee) {
                                                                              game_state.y_change] = game_conf.character;
                     game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
                                                                              game_state.y_change - 1] = ' ';
+                    if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.target) {
+                        system("cls");
+                        printf("OBJECT GOT THE TARGET!");
+                    }
 
                 }
             } else if (game_state.y_change == -1) {
@@ -359,12 +368,11 @@ int game_time(float timee) {
                     game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
                                                                              game_state.y_change - 1] ==
                     game_conf.daethblock ||
-                    game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos +
-                                                                                 game_state.y_change] ==
-                    game_conf.target || game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
-                                                                                                 game_state.y_change -
-                                                                                                 1] ==
-                                        game_conf.rpoint) {
+
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change -
+                                                                             1] ==
+                    game_conf.rpoint) {
                     game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
                                                                              game_state.y_change] = game_conf.object;
                 } else {
@@ -375,6 +383,10 @@ int game_time(float timee) {
                                                                              game_state.y_change] = game_conf.character;
                     game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
                                                                              game_state.y_change + 1] = ' ';
+                    if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.target) {
+                        system("cls");
+                        printf("OBJECT GOT THE TARGET!");
+                    }
 
                 }
             }
@@ -383,51 +395,51 @@ int game_time(float timee) {
 //                printf("OBJECT GOT THE TARGET!");
             //}
         }
-        //}
-        /*else if (
-                           game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] ==
-                           game_conf.rpoint) {
-                       game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] =
-                       game_conf.character;
-                       game_state.array[game_state.x_pos][game_state.y_pos] = ' ';
+            //}
+            /*else if (
+                               game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] ==
+                               game_conf.rpoint) {
+                           game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] =
+                           game_conf.character;
+                           game_state.array[game_state.x_pos][game_state.y_pos] = ' ';
 
-        //                if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] != ' ') {
-        //                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
-        //                }
-                   }*/
+            //                if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] != ' ') {
+            //                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
+            //                }
+                       }*/
 
-    else if (game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
-                                                                      game_state.y_change] ==
-             game_conf.rpoint) {
-        game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
-                                                                 game_state.y_change] = game_conf.character;
-        game_state.array[game_state.x_pos][game_state.y_pos] = ' ';
-        random_point(1);
-        ++game_conf.rpoint_score;
-        //printf("%d", game_conf.rpoint_score);
+        else if (game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                          game_state.y_change] ==
+                 game_conf.rpoint) {
+            game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                     game_state.y_change] = game_conf.character;
+            game_state.array[game_state.x_pos][game_state.y_pos] = ' ';
+            random_point(1);
+            ++game_conf.rpoint_score;
+            //printf("%d", game_conf.rpoint_score);
+        }
+
+
+            /* if the block is an object block the thing I understood is that object and the target are the same:/ */
+            /* Or maybe it is some thing that it should move toward the target:/ */
+
+
+
+
+        else {
+            game_state.y_pos += game_state.y_change;
+            game_state.x_pos += game_state.x_change;
+            game_state.array[game_state.x_pos][game_state.y_pos] = game_conf.character;
+            game_state.array[game_state.x_pos - game_state.x_change][game_state.y_pos -
+                                                                     game_state.y_change] = ' ';
+        }
+
+        show_map();
+
+
+        printf("\nTime remaining %.2f ", time_left);
+        wait(0.02);
     }
-
-
-        /* if the block is an object block the thing I understood is that object and the target are the same:/ */
-        /* Or maybe it is some thing that it should move toward the target:/ */
-
-
-
-
-    else {
-        game_state.y_pos += game_state.y_change;
-        game_state.x_pos += game_state.x_change;
-        game_state.array[game_state.x_pos][game_state.y_pos] = game_conf.character;
-        game_state.array[game_state.x_pos - game_state.x_change][game_state.y_pos -
-                                                                 game_state.y_change] = ' ';
-    }
-
-    show_map();
-
-
-    printf("\nTime remaining %.2f ", time_left);
-    wait(0.02);
-}
 
 
 }
