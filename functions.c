@@ -318,78 +318,7 @@ int game_time(float timee) {
 
 
 }
-//int game_time(float left_time){
-//
-//    while(left_time  > 0){
-//        fflush(stdout) ;
-//        //system("cls");
-//        if(clock() - start > 500){
-//
-//            /* if there were a Solidblock or a wall */
-//            if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.solidb || game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.wall)
-//                game_state.array[game_state.x_pos][game_state.y_pos]  = game_conf.character;
-//
-//            /* if the block were a deathblock the game will end */
-//            else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.daethblock) {
-//                /* first clean the screen then print game over and then come out */
-//                system("cls");
-//                printf("GAME OVER!");
-//                break;
-//            }
-//
-//            /* if the character richs the target it will win */
-//            else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.target) {
-//                system("cls");
-//                printf("YOU WON :)");
-//                break;
-//            }
-//            /* if there were a moveblock there */
-//            else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.moveblock) {
-//                if(game_state.x_change == 1) {
-//                    game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
-//                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
-//                }
-//                else if(game_state.x_change == -1) {
-//                    game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
-//                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
-//                }
-//                else if(game_state.y_change == 1) {
-//                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change + 1] = game_conf.moveblock;
-//                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
-//                }
-//                else if(game_state.y_change == -1) {
-//                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change - 1] = game_conf.moveblock;
-//                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = ' ';
-//                }
-//            }
-//            else if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.rpoint) {
-//                game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.character;
-//                random_point(1);
-//                ++game_conf.rpoint_score;
-//            }
-//
-//
-//            /* if the block is an object block the thing I understood is that object and the target are the same:/ */
-//            /* Or maybe it is some thing that it should move toward the target:/ */
-//
-//
-//
-//
-//            else {
-//                game_state.y_pos += game_state.y_change;
-//                game_state.x_pos += game_state.x_change;
-//                game_state.array[game_state.x_pos][game_state.y_pos]  = game_conf.character;
-//                game_state.array[ game_state.x_pos - game_state.x_change][game_state.y_pos - game_state.y_change]  = ' ';
-//            }
-//
-//            show_map();
-//            left_time -= 0.2;
-//            printf("\ntime remaining : %.2f" , left_time);
-//
-//            start = clock();
-//        }
-//    }
-//}
+
 
 
 int random_point(int n) {
@@ -431,8 +360,27 @@ int random_deathblock() {
             game_state.raindbb[y][0] = random_x;
             game_state.raindbb[y][1] = 1;
             game_state.array[y][random_x] = game_conf.daethblock;
+            int arz_zamin = game_state.length;
+            for (int j = 1; j < arz_zamin - 1; j++) {
+
+                int y_j = y + j;
+                game_state.array[y_j - 1][random_x] = ' ';
+                game_state.array[y + j][random_x] = game_conf.daethblock;
+                //game_state.array[y + j][random_x] = ' ';
+
+
+            }
         } else {
             game_state.array[y][random_x] = game_conf.daethblock;
+            int arz_zamin = game_state.length;
+            for (int j = 1; j < arz_zamin - 1; j++) {
+
+                int y_j = y + j;
+                game_state.array[y_j - 1][random_x] = ' ';
+                game_state.array[y + j][random_x] = game_conf.daethblock;
+
+                //game_state.array[y + j][random_x] = ' ';
+            }
         }
 
 
@@ -440,45 +388,21 @@ int random_deathblock() {
     game_state.raindb_x = y;
     game_state.raindb_y = random_x;
     //raindb();
-    int arz_zamin = game_state.length;
-    for(int j = 1; j < arz_zamin; j++) {
-        game_state.array[y + j][random_x] = game_conf.daethblock;
-        game_state.array[y][random_x] = ' ';
-        game_state.array[y + j][random_x] = ' ';
 
-    }
 
-//        game_state.array[y][random_x] = ' ';
-//        game_state.array[y + 1][random_x] = game_conf.daethblock;
-//    }
 }
-//    int i = 0;
-//    int j = 1;
-//    int n = game_conf.raindb;
-//    int y = 1;
-//    int random_x = rand() % game_state.width;
-//    int flag = n;
-//    while(n > 0) {
-//        //for (i = 0; i <= flag; i++) {
-//        game_state.array[y + j][random_x] = game_conf.daethblock;
-//        j++;
-//        game_state.array[y][random_x] = ' ';
-//        n--;
-//        if(game_state.array[random_x][random_y + j] == ' ') {
-//            game_state.array[random_x][random_y + j] = game_conf.daethblock;
-//        }
 
 ////////////////////////////////////////////////rain
-int raindb() {
-    int arz_zamin = game_state.length;
-    for(int j = 1; j < arz_zamin; j++) {
-        game_state.array[game_state.raindb_y + j][game_state.raindb_x] = game_conf.daethblock;
-        game_state.array[game_state.raindb_y][game_state.raindb_x] = ' ';
-        game_state.array[game_state.raindb_y + j][game_state.raindb_x] = ' ';
-
-    }
-
-}
+//int raindb() {
+//    int arz_zamin = game_state.length;
+//    for(int j = 1; j < arz_zamin; j++) {
+//        game_state.array[game_state.raindb_y + j][game_state.raindb_x] = game_conf.daethblock;
+//        game_state.array[game_state.raindb_y][game_state.raindb_x] = ' ';
+//        game_state.array[game_state.raindb_y + j][game_state.raindb_x] = ' ';
+//
+//    }
+//
+//}
 
 /* attack mizane jlosho khali mikone */
 int attack() {
@@ -502,15 +426,19 @@ void opp() {
     while (game_state.opp_y != game_state.target_y) {
         if (game_state.opp_y > game_state.target_y) {
             --game_state.opp_y;
+            game_state.array[game_state.opp_x][game_state.opp_y] = game_conf.opp;
         } else
             ++game_state.opp_y;
+            game_state.array[game_state.opp_x][game_state.opp_y] = game_conf.opp;
     }
 
     while (game_state.opp_x != game_state.target_x) {
         if (game_state.opp_x > game_state.target_x) {
             --game_state.opp_x;
+            game_state.array[game_state.opp_x][game_state.opp_y] = game_conf.opp;
         } else
             ++game_state.opp_x;
+            game_state.array[game_state.opp_x][game_state.opp_y] = game_conf.opp;
     }
 
     if (game_state.opp_y == game_state.target_y && game_state.opp_x == game_state.target_x) {
