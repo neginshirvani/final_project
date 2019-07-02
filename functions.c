@@ -45,13 +45,7 @@ void movement_1() {
             //system("cls");
             //break;
             exit(0);
-        }
-//        else if(key == game_conf.raindb) {
-//            for(int index = 0 ; index <= game_conf.raindb ; index++) {
-//                game_state.array[game_state.x_pos][game_state.y_pos] == game_conf.daethblock;
-//            }
-//        }
-        else if (key == game_conf.put) {
+        } else if (key == game_conf.put) {
             //for(int next_index = 0; next_index <= game_conf.put_num; next_index++) {
             if (game_conf.put_num > 0) {
                 if (game_state.y_change == -1)
@@ -66,14 +60,6 @@ void movement_1() {
             }
         }
 
-        /* now let's write something for the raindb :) I hope k narinm:/ */
-        /* khb mn nemirinm vli khb nega aln inja b nazaram bayad vse in ye char arr dar nazar begirima:/ */
-        /*else if(key == game_conf.raindb[0]) {
-            for(int index = 0 ; index <= game_conf.raindb[2]) {
-                game_state.array[game_state.x_pos][game_state.y_pos] == game_conf.raindb[1];
-            }
-        }*/
-        //random_deathblock();
 
     }
 }
@@ -103,7 +89,7 @@ int game_time(float timee) {
         //fflush(stdout);
         system("cls");
         /* if there were a Solidblock or a wall */
-        raindb();
+        //raindb();
 
         if (game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] ==
             game_conf.solidb ||
@@ -199,7 +185,10 @@ int game_time(float timee) {
                                       game_conf.solidb ||
                     game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
                                                                              game_state.y_change + 1] ==
-                    game_conf.daethblock ||
+                    game_conf.daethblock || game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                                                     game_state.y_change +
+                                                                                                     1] ==
+                                            game_conf.target ||
                     game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
                                                                              game_state.y_change + 1] ==
                     game_conf.daethblock ||
@@ -276,18 +265,151 @@ int game_time(float timee) {
             }
         }
 
-            /*else if (
-                   game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] ==
-                   game_conf.rpoint) {
-               game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] =
-               game_conf.character;
-               game_state.array[game_state.x_pos][game_state.y_pos] = ' ';
-
-//                if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] != ' ') {
-//                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
-//                }
-           }*/
+            /* Object to the Target */
         else if (game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] ==
+                 game_conf.object) {
+//            while (game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] !=
+//                   game_conf.target) {
+            if (game_state.x_change == 1) {
+                if (game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos +
+                                                                                 game_state.y_change] ==
+                    game_conf.wall ||
+                    game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos +
+                                                                                 game_state.y_change] ==
+                    game_conf.solidb ||
+                    game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos +
+                                                                                 game_state.y_change] ==
+                    game_conf.daethblock ||
+                    game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos +
+                                                                                 game_state.y_change] ==
+                    game_conf.rpoint) {
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change] = game_conf.object;
+                } else {
+                    game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos +
+                                                                                 game_state.y_change] = game_conf.object;
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change] = game_conf.character;
+                    game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos +
+                                                                                 game_state.y_change] = ' ';
+                    if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.target) {
+                        system("cls");
+                        printf("OBJECT GOT THE TARGET!");
+                    }
+
+                }
+            } else if (game_state.x_change == -1) {
+                if (game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos +
+                                                                                 game_state.y_change] ==
+                    game_conf.wall ||
+                    game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos +
+                                                                                 game_state.y_change] ==
+                    game_conf.solidb ||
+                    game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos +
+                                                                                 game_state.y_change] ==
+                    game_conf.daethblock ||
+                    game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos +
+                                                                                 game_state.y_change] ==
+                    game_conf.rpoint) {
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change] = game_conf.object;
+                } else {
+                    game_state.array[game_state.x_pos + game_state.x_change - 1][game_state.y_pos +
+                                                                                 game_state.y_change] = game_conf.object;
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change] = game_conf.character;
+                    game_state.array[game_state.x_pos + game_state.x_change + 1][game_state.y_pos +
+                                                                                 game_state.y_change] = ' ';
+                    if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.target) {
+                        system("cls");
+                        printf("OBJECT GOT THE TARGET!");
+                    }
+
+                }
+            } else if (game_state.y_change == 1) {
+                if (game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change + 1] ==
+                    game_conf.wall || game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                                               game_state.y_change +
+                                                                                               1] ==
+                                      game_conf.solidb ||
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change + 1] ==
+                    game_conf.daethblock ||
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change + 1] ==
+                    game_conf.daethblock ||
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change + 1] ==
+                    game_conf.rpoint) {
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change] = game_conf.object;
+                } else {
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change +
+                                                                             1] = game_conf.object;
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change] = game_conf.character;
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change - 1] = ' ';
+                    if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.target) {
+                        system("cls");
+                        printf("OBJECT GOT THE TARGET!");
+                    }
+
+                }
+            } else if (game_state.y_change == -1) {
+                if (game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change - 1] ==
+                    game_conf.wall || game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                                               game_state.y_change -
+                                                                                               1] ==
+                                      game_conf.solidb ||
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change - 1] ==
+                    game_conf.daethblock ||
+
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change -
+                                                                             1] ==
+                    game_conf.rpoint) {
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change] = game_conf.object;
+                } else {
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change -
+                                                                             1] = game_conf.object;
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change] = game_conf.character;
+                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                             game_state.y_change + 1] = ' ';
+                    if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.target) {
+                        system("cls");
+                        printf("OBJECT GOT THE TARGET!");
+                    }
+
+                }
+            }
+//            if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] == game_conf.target) {
+//                system("cls");
+//                printf("OBJECT GOT THE TARGET!");
+            //}
+        }
+            //}
+            /*else if (
+                               game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] ==
+                               game_conf.rpoint) {
+                           game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] =
+                           game_conf.character;
+                           game_state.array[game_state.x_pos][game_state.y_pos] = ' ';
+
+            //                if(game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] != ' ') {
+            //                    game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] = game_conf.moveblock;
+            //                }
+                       }*/
+
+        else if (game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
+                                                                          game_state.y_change] ==
                  game_conf.rpoint) {
             game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos +
                                                                      game_state.y_change] = game_conf.character;
@@ -308,7 +430,8 @@ int game_time(float timee) {
             game_state.y_pos += game_state.y_change;
             game_state.x_pos += game_state.x_change;
             game_state.array[game_state.x_pos][game_state.y_pos] = game_conf.character;
-            game_state.array[game_state.x_pos - game_state.x_change][game_state.y_pos - game_state.y_change] = ' ';
+            game_state.array[game_state.x_pos - game_state.x_change][game_state.y_pos -
+                                                                     game_state.y_change] = ' ';
         }
 
         show_map();
@@ -320,7 +443,6 @@ int game_time(float timee) {
 
 
 }
-
 
 
 int random_point(int n) {
@@ -374,14 +496,12 @@ int random_deathblock() {
     game_state.raindb_y = random_x;
 
 
-
-
 }
 
 ////////////////////////////////////////////////rain
 int raindb() {
 
-    for(int i = 0; i < game_conf.raindb; i++) {
+    for (int i = 0; i < game_conf.raindb; i++) {
         game_state.raindbb[i][0]++;
         game_state.array[game_state.raindbb[i][0]][game_state.raindbb[i][1]] = game_conf.daethblock;
         game_state.array[game_state.raindbb[i][0] - 1][game_state.raindbb[i][1]] = ' ';
@@ -416,7 +536,7 @@ void opp() {
             game_state.array[game_state.opp_x][game_state.opp_y] = game_conf.opp;
         } else
             ++game_state.opp_y;
-            game_state.array[game_state.opp_x][game_state.opp_y] = game_conf.opp;
+        game_state.array[game_state.opp_x][game_state.opp_y] = game_conf.opp;
     }
 
     while (game_state.opp_x != game_state.target_x) {
@@ -425,7 +545,7 @@ void opp() {
             game_state.array[game_state.opp_x][game_state.opp_y] = game_conf.opp;
         } else
             ++game_state.opp_x;
-            game_state.array[game_state.opp_x][game_state.opp_y] = game_conf.opp;
+        game_state.array[game_state.opp_x][game_state.opp_y] = game_conf.opp;
     }
 
     if (game_state.opp_y == game_state.target_y && game_state.opp_x == game_state.target_x) {
