@@ -430,9 +430,9 @@ int random_deathblock() {
         } else {
             game_state.array[y][random_x] = game_conf.daethblock;
         }
-        game_state.raindb_x = y;
-        game_state.raindb_y = random_x;
-        raindb();
+//        game_state.raindb_x = y;
+//        game_state.raindb_y = random_x;
+        //raindb();
         /*for(int j = 4; j < game_state.width; j++) {
             game_state.array[j][random_x] = game_conf.daethblock;
             game_state.array[j - 1][random_x] = ' ';
@@ -540,5 +540,6 @@ int show_map() {
     //random_deathblock();
 
     movement_1();
+    //opp();
 
 }
