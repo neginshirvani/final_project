@@ -113,7 +113,8 @@ int game_time(float timee) {
         //fflush(stdout);
         system("cls");
         /* if there were a Solidblock or a wall */
-        raindb();
+        if (game_conf.raindb!=0)
+            raindb();
 
         if (game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] ==
             game_conf.solidb ||

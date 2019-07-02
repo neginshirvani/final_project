@@ -16,7 +16,7 @@ extern struct game_state_struct game_state;
 
 
 
-void read_file () {
+void read_file (char in[]) {
     FILE *map;
 //    printf("please enter your map name ... \n");
 //    char map_name[50];

@@ -9,6 +9,10 @@
 
 void main_menu();
 void theme();
-
+void map_menu();
 void settings();
 void best_score();
+void signup();
+void log_menu();
+
+void login();
