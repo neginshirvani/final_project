@@ -7,4 +7,7 @@
 
 #endif //C_FINAL_PROJECT_MENU_H
 
-void main_menu();
+int main_menu();
+void setting();
+void theme();
+void font();

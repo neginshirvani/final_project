@@ -518,7 +518,7 @@ void opp() {
 int show_map() {
 
     int i = 2;
-
+    int j=3;
 
     //SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
 
@@ -526,6 +526,7 @@ int show_map() {
     //random_deathblock();
     //raindb();
     while (i < game_state.width + 2) {
+        if
         puts(game_state.array[i]);
         i++;
 //        putchar(game_state.array[i][j]);
