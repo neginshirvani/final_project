@@ -5,7 +5,6 @@
 #include "gameconf.h"
 #include "functions.h"
 #include <conio.h>
-#include "menu.h"
 #include <time.h>
 extern struct game_conf_struct game_conf;
 void welcome(){
@@ -29,7 +28,7 @@ void welcome(){
 }
 int main() {
     welcome();
-    main_menu();
+
     game_read();
     read_file();
     game_time(game_conf.time);

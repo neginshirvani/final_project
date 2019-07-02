@@ -467,16 +467,16 @@ int random_deathblock() {
 //            game_state.array[random_x][random_y + j] = game_conf.daethblock;
 //        }
 
-
-int raindb() {
-    int arz_zamin = game_state.length;
-    while(arz_zamin > 0) {
-        game_state.array[game_state.raindb_x + 1][game_state.raindb_y] = game_conf.daethblock;
-        game_state.array[game_state.raindb_x][game_state.raindb_y] = ' ';
-        arz_zamin--;
-
-    }
-}
+////////////////////////////////////////////////rain
+//int raindb() {
+//    int arz_zamin = game_state.length;
+//    while(arz_zamin > 0) {
+//        game_state.array[game_state.raindb_x + 1][game_state.raindb_y] = game_conf.daethblock;
+//        game_state.array[game_state.raindb_x][game_state.raindb_y] = ' ';
+//        arz_zamin--;
+//
+//    }
+//}
 /* attack mizane jlosho khali mikone */
 int attack() {
     int n = game_conf.attack;
@@ -526,7 +526,8 @@ int show_map() {
     //random_deathblock();
     //raindb();
     while (i < game_state.width + 2) {
-        if
+
+
         puts(game_state.array[i]);
         i++;
 //        putchar(game_state.array[i][j]);
