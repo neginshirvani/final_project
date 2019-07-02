@@ -59,6 +59,30 @@ void movement_1() {
                 game_conf.put_num--;
             }
         }
+        else if (key == 224) {
+            char ch;
+            ch = getch();
+            if(ch == 72) {
+                for(int i = 1; i <= game_conf.attack; i++) {
+                    game_state.array[game_state.x_pos - i][game_state.y_pos] = ' ';
+                }
+            }
+            else if(ch == 80) {
+                for(int i = 1; i <= game_conf.attack; i++) {
+                    game_state.array[game_state.x_pos + i][game_state.y_pos] = ' ';
+                }
+            }
+            else if(ch == 77) {
+                for(int i = 1; i <= game_conf.attack; i++) {
+                    game_state.array[game_state.x_pos][game_state.y_pos + i] = ' ';
+                }
+            }
+            else if(ch == 75) {
+                for(int i = 1; i <= game_conf.attack; i++) {
+                    game_state.array[game_state.x_pos][game_state.y_pos - i] = ' ';
+                }
+            }
+        }
 
 
     }
@@ -461,8 +485,8 @@ int random_point(int n) {
     }
 }
 
-/* in agar seda zade beshe va faal bashe kar mikone albate vli ye soal pish miad va
- * oonm inke agar tabe baqie esmesh farq kone chi:/*/
+
+
 int random_deathblock() {
     int y = 4;
     int random_x = 0;
@@ -504,15 +528,17 @@ int raindb() {
 
     for (int i = 0; i < game_conf.raindb; i++) {
 
-        if(game_state.raindbb[i][0] > game_state.length) {
+        if(game_state.raindbb[i][0] >= game_state.width) {
+            game_state.array[game_state.raindbb[i][0]][game_state.raindbb[i][1]] = ' ';
             game_state.raindbb[i][0]=4;
             game_state.array[game_state.raindbb[i][0]][game_state.raindbb[i][1]] = game_conf.daethblock;
-            game_state.array[game_state.raindbb[i][0] - 1][game_state.raindbb[i][1]] = ' ';
 
         } else {
-            game_state.raindbb[i][0]++;
-            game_state.array[game_state.raindbb[i][0]][game_state.raindbb[i][1]] = game_conf.daethblock;
-            game_state.array[game_state.raindbb[i][0] - 1][game_state.raindbb[i][1]] = ' ';
+            if(game_state.array[game_state.raindbb[i][0] + 1][game_state.raindbb[i][1]] != game_conf.wall || game_state.array[game_state.raindbb[i][0] + 1][game_state.raindbb[i][1]] != game_conf.solidb) {
+                game_state.raindbb[i][0]++;
+                game_state.array[game_state.raindbb[i][0]][game_state.raindbb[i][1]] = game_conf.daethblock;
+                game_state.array[game_state.raindbb[i][0] - 1][game_state.raindbb[i][1]] = ' ';
+            }
 
         }
 
@@ -525,9 +551,9 @@ int raindb() {
 int attack() {
     int n = game_conf.attack;
     int i = 0;
-    if (n > 0) {
+    while (n > 0) {
         if (game_state.y_change == -1)
-            game_state.array[game_state.x_pos][(game_state.y_pos) + game_conf.attack] = game_conf.daethblock;
+            game_state.array[game_state.x_pos][(game_state.y_pos) + game_conf.attack] = ' ';
         else if (game_state.y_change == 1)
             game_state.array[game_state.x_pos][(game_state.y_pos) - game_conf.attack] = game_conf.daethblock;
         else if (game_state.x_change == 1)
