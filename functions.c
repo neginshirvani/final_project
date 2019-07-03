@@ -24,7 +24,7 @@ extern struct game_state_struct game_state;
 
 
 void movement_1() {
-    //printf("GO to ie zendegi sagi sanati");
+
     while (kbhit()) {
         int key = getch();
         if (key == game_conf.left) {
@@ -539,12 +539,8 @@ int raindb() {
                 game_state.array[game_state.raindbb[i][0]][game_state.raindbb[i][1]] = game_conf.daethblock;
                 game_state.array[game_state.raindbb[i][0] - 1][game_state.raindbb[i][1]] = ' ';
             }
-
         }
-
     }
-
-
 }
 
 /* attack mizane jlosho khali mikone */
@@ -594,28 +590,14 @@ int show_map() {
     int i = 2;
     int j = 3;
 
-    //SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
 
-    // int ch;
-    //random_deathblock();
-    //raindb();
     while (i < game_state.width + 2) {
 
 
         puts(game_state.array[i]);
         i++;
-//        putchar(game_state.array[i][j]);
-//        ch = game_state.array[i][j];
-//        ++j;
-//        if (ch == '\n') {
-//            ++i;
-//            j = 0;
-//        }
-    }
-//    system("COLOR 3");
-    //random_deathblock();
 
-    movement_1();
-    //opp();
+        movement_1();
+    }
 
 }
