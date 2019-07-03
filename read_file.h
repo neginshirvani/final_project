@@ -7,4 +7,4 @@
 
 #endif //TRAINING_READ_FILE_H
 
-void read_file ();
+void read_file (char in[]);

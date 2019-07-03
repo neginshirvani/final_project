@@ -11,8 +11,45 @@
 #include "read_file.h"
 #include "menu.h"
 #include "functions.h"
-extern struct game_conf_struct game_conf;
+#include <string.h>
+#include <conio.h>
 
+extern struct game_conf_struct game_conf;
+struct user
+{
+    char user[50];
+    char pass[50];
+
+    long int roll;
+
+    struct user *link;
+}*start=NULL,*tmp,*ptr;
+char userin=0;
+void log_menu(){
+
+    int i;
+    while (userin!='3') {
+        system("cls");
+        printf(" 1. login\n");
+        printf(" 2. signup\n");
+        userin=getchar();
+        switch (userin) {
+            case '1':
+                login();
+                break;
+
+            case '2':
+                signup();
+                break;
+
+            case '3':
+                main_menu();
+                break;
+        }
+
+    }
+    main_menu();
+}
 
 void main_menu(){
 
@@ -33,12 +70,13 @@ void main_menu(){
         printf("*                                        *\n");
         printf("******************************************\n");
         ch=getchar();
-        getchar();
+       // getchar();
         switch (ch){
             case '1':
-                game_read();
-                read_file();
-                game_time(game_conf.time);
+                map_menu();
+//                game_read();
+//                read_file();
+//                game_time(game_conf.time);
                 break;
 
             case '2':
@@ -98,15 +136,15 @@ void theme(){
 
 void settings(){
     char ch = 0;
-    while (ch!='2') {
+    while (ch!='3') {
         system("cls");
 
         printf("\n******************************************\n");
         printf("* -->theme :                             *\n");
         printf("*                                        *\n");
         printf("*  1. change theme                       *\n");
-        printf("*  2. Back to menu                       *\n");
-        printf("*                                        *\n");
+        printf("*  2. change MODE                        *\n");
+        printf("*  3. Back to menu                       *\n");
         printf("*                                        *\n");
         printf("******************************************\n");
         ch=getchar();
@@ -117,6 +155,9 @@ void settings(){
                 break;
 
             case '2':
+                game_mode();
+                break;
+            case '3':
 
                 break;
 
@@ -134,4 +175,167 @@ void best_score(){
 
     printf("\npress enter to back to menu ... ");
     getchar();
+    getchar();
+}
+void map_menu(){
+    FILE *score=fopen("score.txt","a");
+    char ch = 0;
+    while(ch!='5'){
+        system("cls");
+        printf("******************************************\n");
+        printf("*                                        *\n");
+        printf("*  1. game 1                             *\n");
+        printf("*  2. game 2                             *\n");
+        printf("*  3. game 3                             *\n");
+        printf("*  4. user game                          *\n");
+        printf("*  5. back to menu                       *\n");
+        printf("*                                        *\n");
+        printf("******************************************\n");
+        ch=getchar();
+       // getchar();
+        switch (ch){
+            case '1':
+                game_conf.userscore=0;
+                game_read("game-pacman.txt");
+                read_file("map-pacman.txt");
+                game_time(game_conf.time);
+                fprintf(score,"admin :  %d\n",game_conf.userscore);
+                break;
+
+            case '2':
+                game_conf.userscore=0;
+                game_read("game2-pacman.txt");
+                read_file("map2-pacman.txt");
+                game_time(game_conf.time);
+                fprintf(score,"admin :  %d\n",game_conf.userscore);
+                break;
+
+            case '3':
+                game_conf.userscore=0;
+                game_read("game3-pacman.txt");
+                read_file("map3-pacman.txt");
+                game_time(game_conf.time);
+                fprintf(score,"admin :  %d\n",game_conf.userscore);
+            case '4':
+                game_conf.userscore=0;
+                printf("please enter your info name ... \n");
+                char info_name[50];
+                scanf("%s",info_name);
+
+                printf("please enter your map name ... \n");
+                char map_name[50];
+                scanf("%s",map_name);
+                game_read(info_name);
+                read_file(map_name);
+                game_time(game_conf.time);
+
+                fprintf(score,"admin :  %d\n",game_conf.userscore);
+            case '5':
+                break;
+
+        }
+    }
+
+}
+void signup(){
+        system("cls");
+        char nam[50],cit[50],subj[30];
+        tmp=(struct user*)malloc(sizeof(struct user));
+        printf("\nEnter Student name:" );
+        fflush(stdin);
+        gets(nam);
+        strcpy(tmp->user, nam);
+        printf("\nEnter subject of student: ");
+        fflush(stdin);
+        gets(subj);
+        strcpy(tmp->pass, subj);
+        printf("\nEnter City of student: ");
+        fflush(stdin);
+        gets(cit);
+        scanf("%ld", &(tmp->roll));
+        fflush(stdin);
+        tmp->link=NULL;
+        if(start==NULL)
+        {
+            start=tmp;
+        }
+        else
+        {
+            ptr=start;
+            while(ptr!=NULL)
+            {
+                ptr=ptr->link;
+                ptr->link=tmp;
+            }
+        }
+        printf("\n success \n press enter to go to login menu");
+        userin=0;
+        getchar();
+}
+void login(){
+    char userid[]="negin",password[]="shirvani",p[15],u[15];
+    char userid1[]="ali",password1[]="samani";
+    strcpy(game_conf.username,"admin");
+    int n=1,a,b,c,d;
+    printf("\nYou have  three chances to enter");
+
+    while(n<=3)
+    {
+        printf("\nUSER ID: ");
+        scanf("%s",u);
+        printf("\nPASSWORD: ");
+        scanf("%s",p);
+        a=strcmp(u,userid);
+        c=strcmp(u,userid1);
+        b=strcmp(p,password);
+        d=strcmp(p,password1);
+        if((a==0&&b==0)||(c==0&&d==0))
+        {
+            printf("\nYou have logged in successfully.");
+            userin='3';
+            break;
+
+        }
+        else
+        {
+            printf("\nWrong PASSWORD and/or USER ID. Now you have % d more chance/s.",3-n);
+        }
+
+        n++;
+    }
+    if(n==4)
+        exit(0);
+
+};
+
+void game_mode(){
+    char ch = 0;
+    while(ch!='4'){
+        system("cls");
+        printf("******************************************\n");
+        printf("*                                        *\n");
+        printf("*  1. FAST                               *\n");
+        printf("*  2. MEDIUM                             *\n");
+        printf("*  3. SLOW                               *\n");
+        printf("*  4. Back                               *\n");
+        printf("******************************************\n");
+        ch=getchar();
+         getchar();
+        switch (ch){
+            case '1':
+                game_conf.wait=0.02;
+                break;
+
+            case '2':
+                game_conf.wait=0.05;
+                break;
+            case '3':
+                game_conf.wait=0.1;
+                break;
+            case '4':
+                break;
+
+        }
+    }
+
 }

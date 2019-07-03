@@ -25,8 +25,9 @@ void welcome(){
     printf("\n\n               LOADING ...          ");
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
     int i;
-
+    system("COLOR F5");
     for ( i = 0; i < 50; ++i) {
+
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN|BACKGROUND_GREEN);
         int j=i;
         printf("|");
@@ -36,17 +37,9 @@ void welcome(){
 }
 int main() {
     game_conf.theme_num=15;
-
+    game_conf.wait=0.05;
     welcome();
-    main_menu();
-//    game_read();
-//    read_file();
-//    game_time(game_conf.time);
-  // printf("Hello, World!\n");
-//    while(kbhit()){
-//        char c ;
-//
-//    }
+    log_menu();
 
 
 

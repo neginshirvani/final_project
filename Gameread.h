@@ -9,4 +9,4 @@
 
 void sep(char inp[]);
 void fill_info();
-void game_read();
+void game_read(char in []);

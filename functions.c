@@ -113,7 +113,8 @@ int game_time(float timee) {
         //fflush(stdout);
         system("cls");
         /* if there were a Solidblock or a wall */
-        raindb();
+        if (game_conf.raindb!=0)
+            raindb();
 
         if (game_state.array[game_state.x_pos + game_state.x_change][game_state.y_pos + game_state.y_change] ==
             game_conf.solidb ||
@@ -130,6 +131,7 @@ int game_time(float timee) {
             printf("GAME OVER!");
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 
+            getchar();
             getchar();
             break;
         }
@@ -439,7 +441,7 @@ int game_time(float timee) {
                                                                      game_state.y_change] = game_conf.character;
             game_state.array[game_state.x_pos][game_state.y_pos] = ' ';
             random_point(1);
-            ++game_conf.rpoint_score;
+            game_conf.userscore+=game_conf.rpoint_score;
             //printf("%d", game_conf.rpoint_score);
         }
 
@@ -462,7 +464,7 @@ int game_time(float timee) {
 
 
         printf("\nTime remaining %.2f ", time_left);
-        wait(0.02);
+        wait(game_conf.wait);
     }
 
 
@@ -539,8 +541,12 @@ int raindb() {
                 game_state.array[game_state.raindbb[i][0]][game_state.raindbb[i][1]] = game_conf.daethblock;
                 game_state.array[game_state.raindbb[i][0] - 1][game_state.raindbb[i][1]] = ' ';
             }
+
         }
+
     }
+
+
 }
 
 /* attack mizane jlosho khali mikone */
@@ -590,14 +596,28 @@ int show_map() {
     int i = 2;
     int j = 3;
 
+    //SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
 
+    // int ch;
+    //random_deathblock();
+    //raindb();
     while (i < game_state.width + 2) {
 
 
         puts(game_state.array[i]);
         i++;
-
-        movement_1();
+//        putchar(game_state.array[i][j]);
+//        ch = game_state.array[i][j];
+//        ++j;
+//        if (ch == '\n') {
+//            ++i;
+//            j = 0;
+//        }
     }
+//    system("COLOR 3");
+    //random_deathblock();
+
+    movement_1();
+    //opp();
 
 }
