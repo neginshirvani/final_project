@@ -132,6 +132,7 @@ int game_time(float timee) {
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 
             getchar();
+            getchar();
             break;
         }
 
@@ -143,6 +144,7 @@ int game_time(float timee) {
             printf("YOU WON :)");
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 
+            getchar();
             getchar();
             break;
         }
@@ -440,7 +442,7 @@ int game_time(float timee) {
                                                                      game_state.y_change] = game_conf.character;
             game_state.array[game_state.x_pos][game_state.y_pos] = ' ';
             random_point(1);
-            ++game_conf.rpoint_score;
+            game_conf.userscore+=game_conf.rpoint_score;
             //printf("%d", game_conf.rpoint_score);
         }
 
@@ -615,7 +617,7 @@ int show_map() {
     }
 //    system("COLOR 3");
     //random_deathblock();
-
+    printf("       score : %d",game_conf.userscore);
     movement_1();
     //opp();
 

@@ -11,6 +11,7 @@
 #include "read_file.h"
 #include "menu.h"
 #include "functions.h"
+#include <string.h>
 #include <conio.h>
 
 extern struct game_conf_struct game_conf;
@@ -171,8 +172,10 @@ void best_score(){
 
     printf("\npress enter to back to menu ... ");
     getchar();
+    getchar();
 }
 void map_menu(){
+    FILE *score=fopen("score.txt","a");
     char ch = 0;
     while(ch!='5'){
         system("cls");
@@ -189,24 +192,29 @@ void map_menu(){
        // getchar();
         switch (ch){
             case '1':
-
+                game_conf.userscore=0;
                 game_read("game-pacman.txt");
                 read_file("map-pacman.txt");
                 game_time(game_conf.time);
+                fprintf(score,"admin :  %d\n",game_conf.userscore);
                 break;
 
             case '2':
+                game_conf.userscore=0;
                 game_read("game2-pacman.txt");
                 read_file("map2-pacman.txt");
                 game_time(game_conf.time);
-
+                fprintf(score,"admin :  %d\n",game_conf.userscore);
                 break;
 
             case '3':
+                game_conf.userscore=0;
                 game_read("game3-pacman.txt");
                 read_file("map3-pacman.txt");
                 game_time(game_conf.time);
+                fprintf(score,"admin :  %d\n",game_conf.userscore);
             case '4':
+                game_conf.userscore=0;
                 printf("please enter your info name ... \n");
                 char info_name[50];
                 scanf("%s",info_name);
@@ -217,19 +225,14 @@ void map_menu(){
                 game_read(info_name);
                 read_file(map_name);
                 game_time(game_conf.time);
+
+                fprintf(score,"admin :  %d\n",game_conf.userscore);
             case '5':
                 break;
 
         }
     }
-    printf("******************************************\n");
-    printf("*                                        *\n");
-    printf("*  1. game 1                             *\n");
-    printf("*  2. game 2                             *\n");
-    printf("*  3. game 3                             *\n");
-    printf("*  4. user game                          *\n");
-    printf("*                                        *\n");
-    printf("******************************************\n");
+
 }
 void signup(){
         system("cls");
@@ -268,6 +271,7 @@ void signup(){
 }
 void login(){
     char userid[]="admin",password[]="admin",p[15],u[15];
+    strcpy(game_conf.username,"admin");
     int n=1,a,b;
     printf("\nYou have  three chances to enter");
 

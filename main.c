@@ -40,16 +40,6 @@ int main() {
 
     welcome();
     log_menu();
-//    main_menu();
-
-//    game_read();
-//    read_file();
-//    game_time(game_conf.time);
-  // printf("Hello, World!\n");
-//    while(kbhit()){
-//        char c ;
-//
-//    }
 
 
 
